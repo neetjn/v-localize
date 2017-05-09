@@ -44,6 +44,13 @@ const App = new Vue({
 }); // # instantiate our app
 ```
 
+Once your Vue app has been instantiated, the language can be changed by calling `$setLang()` from your Vue instance.
+
+```html
+<button @click="$setLang('en')">English</button>
+<button @click="$setLang('sp')">Spanish</button>
+```
+
 ### Configuration
 
 The plugin takes 3 options,
