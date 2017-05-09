@@ -4,33 +4,36 @@
 
 **Vue Localize** is a very simple localization plugin for VueJS. Your localizations will be available anywhere in your web application wrapped in a Vue instance.
 
-Default language, default phrase, and your entire localization map can be defined when installing the plugin. This plugin will work both in your browser and on your server.
+Default language, default phrase, and your entire localization map can be defined when installing the plugin.
 
 ### Example Use
 
 ```js
 import { VueLocalize } from './vendor/vue-localize.js'
 
-Vue.use(VueLocalize, {
-	lang_default: 'en',
-	localizations: {
-    en: {
-      header: {
-        title: 'Hello World!'
-      },
-      body: {
-      	content: 'Today is the 5th of May.'
-      }
+const localizations =
+{
+  en: {
+    header: {
+      title: 'Hello World!'
     },
-    sp: {
-      header: {
-        title: 'Hola Mundo!'
-      },
-      body: {
-      	content: 'Hoy es el cinco de Mayo.'
-      }
+    body: {
+      content: 'Today is the 5th of May.'
     }
   },
+  sp: {
+    header: {
+      title: 'Hola Mundo!'
+    },
+    body: {
+      content: 'Hoy es el cinco de Mayo.'
+    }
+  }
+};
+
+Vue.use(VueLocalize, {
+  lang_default: 'en',
+	localizations: localizations,
   locale_default: '???'
 }); // # install our plugin
 
