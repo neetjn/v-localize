@@ -67,7 +67,7 @@ The plugin takes 3 options,
      }
    }
    ```
-- `locale_default`: Default text to show if localization for crurent language not found.
+- `locale_default`: Default text to show if localization for current language not found. If not specified, will default to `'N/A'`.
 
 ---
 Copyright (c) 2017 John Nolette Licensed under the MIT license.
