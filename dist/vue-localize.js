@@ -129,3 +129,7 @@ var VueLocalize = {
     });
   }
 };
+
+if ((typeof process !== 'undefined') && (process.release.name === 'node')) {
+    module.exports = VueLocalize;  // # export for node use
+};
