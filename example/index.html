@@ -1,0 +1,18 @@
+<!DOCTYPE>
+<html lang="en">
+  <head>
+    <meta chartset="utf-8">
+    <title>Vue-Localize Demo</title>
+    <script type="text/javascript" src="vendor/vue.min.js"></script>
+    <script type="text/javascript" src="vendor/vue-localize.min.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <h1 v-localize="'header.title'"></h1>
+      <p v-localize="'body.content'"></p>
+      <button @click="$setLang('en')">English</button>
+      <button @click="$setLang('sp')">Spanish</button>
+    </div>
+    <script type="text/javascript" src="app.js"></script>
+  </body>
+</html>
