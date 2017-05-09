@@ -1,5 +1,5 @@
 # **Vue Localize**
----
+
 > Simple localization plugin for the amazing VueJS.
 
 **Vue Localize** is a very simple localization plugin for VueJS. Your localizations will be available anywhere in your web application wrapped in a Vue instance.
