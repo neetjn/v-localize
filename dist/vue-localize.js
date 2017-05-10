@@ -13,7 +13,7 @@
    	Vue.prototype.$localizations = options.localizations;
      Vue.prototype.$locale_default = options.locale_default || 'N/A';
      Vue.prototype.$setLang = function(lang) {
-     	window.localStorage.setItem('localization', lang); // # update session localization
+     	 window.localStorage.setItem('localization', lang); // # update session localization
        window.location.reload();  // # reload app with new localization
      };
      Vue.directive('localize', function(el, binding, vm) {
