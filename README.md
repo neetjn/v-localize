@@ -35,7 +35,7 @@ const localizations =
 
 Vue.use(VueLocalize, {
   lang_default: 'en',
-	localizations: localizations,
+  localizations: localizations,
   locale_default: '???'
 }); // # install our plugin
 
@@ -68,6 +68,10 @@ The plugin takes 3 options,
    }
    ```
 - `locale_default`: Default text to show if localization for current language not found. If not specified, will default to `'N/A'`.
+
+### Support
+
+**Vue Localize** was developed using VueJS 2.x, support previous versions is not available.
 
 ---
 Copyright (c) 2017 John Nolette Licensed under the MIT license.
