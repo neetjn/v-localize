@@ -1,0 +1,27 @@
+{
+  "name": "vue-localize",
+  "version": "1.0.0",
+  "description": "Simple localization plugin for the amazing VueJS.",
+  "main": "dist/vue-localize.js",
+  "directories": {
+    "example": "example"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/neetVeritas/vue-localize.git"
+  },
+  "keywords": [
+    "Vue",
+    "Localize",
+    "Javascript"
+  ],
+  "author": "John Nolette",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/neetVeritas/vue-localize/issues"
+  },
+  "homepage": "https://github.com/neetVeritas/vue-localize#readme"
+}
