@@ -1,0 +1,22 @@
+{
+  "name": "v-localize",
+  "description": "Simple localization plugin for the amazing VueJS.",
+  "main": "dist/vue-localize.js",
+  "authors": [
+    "John Nolette"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "Vue",
+    "Localize",
+    "Javascript"
+  ],
+  "homepage": "https://github.com/neetVeritas/vue-localize",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

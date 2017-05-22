@@ -10,8 +10,18 @@ Default language, default phrase, and your entire localization map can be define
 
 ### Usage
 
+To install via Bower, simply do the following:
+```sh
+bower install v-localize
+```
+or you can install via npm:
+```sh
+npm install v-localize
+```
+Installing the plugin is then as simple as:
+
 ```js
-import { VueLocalize } from './vendor/vue-localize.js'
+import { VueLocalize } from 'v-localize'
 
 const localizations =
 {
