@@ -33,6 +33,6 @@
    }
  };
 
-if ((typeof process !== 'undefined') && (process.release.name === 'node')) {
-    module.exports = VueLocalize;  // # export for node use
+if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') {
+  module.exports = VueLocalize;
 };
