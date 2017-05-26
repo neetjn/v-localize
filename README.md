@@ -46,7 +46,7 @@ const localizations =
 Vue.use(VueLocalize, {
   lang_default: 'en',
   localizations: localizations,
-  locale_default: '???'
+  locale_default: '...'
 }); // # install our plugin
 
 const App = new Vue({
