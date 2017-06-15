@@ -40,5 +40,5 @@ var Localize = {
 };
 
 if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') {
- module.exports = VueLocalize;
+  module.exports = Localize;
 };
