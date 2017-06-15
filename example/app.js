@@ -1,26 +1,29 @@
-Vue.use(VueLocalize, {
-	lang_default: 'en',
-	localizations: {
-    en: {
-      header: {
-        title: 'Hello World!'
-      },
-      body: {
-      	content: 'Today is the 5th of May.'
-      }
-    },
-    sp: {
-      header: {
-        title: 'Hola Mundo!'
-      },
-      body: {
-      	content: 'Hoy es el cinco de Mayo.'
-      }
-    }
-  },
-  locale_default: '???'
-}); // # install our plugin
+Vue.use(Localize);
 
-const App = new Vue({
-  el: '#app'
-}); // # instantiate our app
+let localize = Localize.config({
+	default: 'en',
+	available: ['en', 'sp', 'pr', 'ch'],
+	not_found: '?',
+	localizations: {
+		en: {
+			header: {
+				title: 'English'
+			}
+		},
+		sp: {
+			header: {
+				title: 'Spanish'
+			}
+		},
+		pr: {
+			header: {
+				title: 'Portuguese'
+			}
+		}
+	}
+});
+
+new Vue({
+	el: '#app',
+	localize
+});
