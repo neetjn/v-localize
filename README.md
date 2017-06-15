@@ -26,31 +26,31 @@ import { Localize } from 'v-localize';
 Vue.use(Localize);
 
 let localize = Localize.config({
-	default: 'en',
-	available: ['en', 'sp', 'pr', 'ch'],
-	not_found: '?',
-	localizations: {
-		en: {
-			header: {
-				title: 'English'
-			}
-		},
-		sp: {
-			header: {
-				title: 'Spanish'
-			}
-		},
-		pr: {
-			header: {
-				title: 'Portuguese'
-			}
-		}
-	}
+  default: 'en',
+  available: ['en', 'sp', 'pr', 'ch'],
+  not_found: '?',
+  localizations: {
+    en: {
+      header: {
+        title: 'English'
+      }
+    },
+    sp: {
+      header: {
+        title: 'Spanish'
+      }
+    },
+    pr: {
+      header: {
+        title: 'Portuguese'
+      }
+    }
+  }
 });
 
 new Vue({
-	el: '#app',
-	localize
+  el: '#app',
+  localize
 });
 ```
 
@@ -78,14 +78,14 @@ The plugin takes 4 options,
 - `not_found`: Default text to show if localization for current language not found. If not specified, will default to `'N/A'`.
 - `localizations`: JSON object for localizations. ex;
    ```js
-   {
-     "en": { // language branch
-       "header": "Hello World!", // localization
-       "nav": {
-         "home": "Home" // nested localization
-       }
-     }
-   }
+  {
+    "en": { // language branch
+      "header": "Hello World!", // localization
+      "nav": {
+        "home": "Home" // nested localization
+      }
+    }
+  }
    ```
 
 ### Support
