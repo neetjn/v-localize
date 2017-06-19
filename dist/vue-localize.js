@@ -30,7 +30,7 @@ var Localize = {
    });
  },
  config(ops) {
-   ops.available.forEach((locale) => {
+   ops.available.forEach(function(locale) {
      if (!ops.localizations[locale]) console.warn(`v-localize:\n\tLocalizations for locale ${locale} not found.`);
    });
    window.localStorage.getItem('localization') === null ? (ops.locale = ops.default) && window.localStorage.setItem('localization', ops.default) : (ops.locale = window.localStorage.getItem('localization'));
