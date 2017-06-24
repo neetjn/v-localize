@@ -30,7 +30,7 @@ var Localize = {
       } catch(e) {
         console.error('v-localize:\n\tCould not find localization for ' + binding.value.item + ' in ' + localize.locale + ' language.');
         console.error(e);
-        el.innerHTML = localization.fallback;
+        (!binding.value.attr) ? (el.innerHTML = localize.fallback) : (el.setAttribute(binding.value.attr, localize.fallback));
       }
      }
    });
