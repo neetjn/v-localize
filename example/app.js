@@ -1,7 +1,8 @@
 Vue.use(Localize);
  
 let localize = Localize.config({
-  default: 'en',
+  debug: true,
+  default: 'en-US',
   available: ['en-US', 'es-SP', 'pr-BR'],
   fallback: '?',
   localizations: {

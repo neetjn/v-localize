@@ -24,12 +24,14 @@ var Localize = {
         var localization = localize.localizations[binding.value.locale || localize.locale];
         binding.value.item.match(regex).forEach(function(key) {
           localization = localization[key];
-          if (localization === undefined) throw new Error('Cannot read property for ' + key + '.');
+          if (localization === undefined && localize.debug) throw new Error('Cannot read property for ' + key + '.');
         });
         (!binding.value.attr) ? (el.innerHTML = localization) : (el.setAttribute(binding.value.attr, localization));
       } catch(e) {
-        console.error('v-localize:\n\tCould not find localization for ' + binding.value.item + ' in ' + localize.locale + ' language.');
-        console.error(e);
+        if (localize.debug) {
+          console.error('v-localize:\n  Could not find localization for ' + binding.value.item + ' in ' + localize.locale + ' language.');
+          console.error(e);
+        };
         (!binding.value.attr) ? (el.innerHTML = localize.fallback) : (el.setAttribute(binding.value.attr, localize.fallback));
       }
      }
@@ -37,9 +39,18 @@ var Localize = {
  },
  config: function(ops) {
    ops.available.forEach(function(locale) {
-     if (!ops.localizations[locale]) console.warn('v-localize:\n\tLocalizations for locale ' + locale + ' not found.');
+     if (!ops.localizations[locale]) console.warn('v-localize:\n  Localizations for locale ' + locale + ' not found.');
    });
-   window.localStorage.getItem('localization') === null ? (ops.locale = ops.default) && window.localStorage.setItem('localization', ops.default) : (ops.locale = window.localStorage.getItem('localization'));
+   if (!window.localStorage.getItem('localization')) {
+     ops.locale = ops.default;
+   } else {
+     if (ops.available.indexOf(window.localStorage.getItem('localization')) == -1) {
+       ops.locale = ops.default;
+     } else {
+       ops.locale = window.localStorage.getItem('localization');
+     };
+   }
+   window.localStorage.setItem('localization', ops.locale);
    if (!ops.fallback) ops.fallback = 'N/A';
    return ops;
  }

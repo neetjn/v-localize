@@ -25,20 +25,20 @@ Vue.use(Localize);
 
 let localize = Localize.config({
   default: 'en',
-  available: ['en', 'sp', 'pr', 'ch'],
-  not_found: '?',
+  available: ['en-US', 'es-SP', 'pr-BR'],
+  fallback: '?',
   localizations: {
-    en: {
+    "en-US": {
       header: {
         title: 'English'
       }
     },
-    sp: {
+    "es-SP": {
       header: {
         title: 'Spanish'
       }
     },
-    pr: {
+    "pr-BR": {
       header: {
         title: 'Portuguese'
       }
@@ -55,14 +55,14 @@ new Vue({
 Once your Vue app has been instantiated, the language can be changed by calling `$locale()` from your Vue instance. This will set your desired localization in local storage and reload your current window.
 
 ```html
-<button @click="$locale('en')">English</button>
-<button @click="$locale('sp')">Spanish</button>
+<button @click="$locale('en-US')">English</button>
+<button @click="$locale('es-SP')">Spanish</button>
 ```
 
 You can specify your localizations like so,
 ```html
-<!-- Will add a localized title to this element -->
-<h1 v-localize="{item: 'header.title', locale: 'en', attr: 'title'}">Hello World</h1>
+<!-- Will add a localized title to this element targeting en-US -->
+<h1 v-localize="{item: 'header.title', locale: 'en-US', attr: 'title'}">Hello World</h1>
 <!-- Will replace this element's text with localized item -->
 <h2 v-localize="{item: 'header.title'}"></h2>
 ```
