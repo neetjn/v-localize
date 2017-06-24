@@ -1,7 +1,5 @@
 # **V-Localize**
 
-> Simple localization plugin for the amazing VueJS. Does not depend on any other libraries aside from Vue 2.x.
-
 ### About
 
 **V-Localize** is a very simple localization plugin for VueJS. Your localizations will be available anywhere in your web application wrapped in a Vue instance.
@@ -75,11 +73,11 @@ The plugin takes 4 options,
 
 - `default`: Default language key to target if not set already.
 - `available`: List of available localizations.
-- `not_found`: Default text to show if localization for current language not found. If not specified, will default to `'N/A'`.
+- `fallback`: Default text to show if localization for current language not found. If not specified, will default to `'N/A'`.
 - `localizations`: JSON object for localizations. ex;
    ```js
   {
-    "en": { // language branch
+    "en-US": { // language branch
       "header": "Hello World!", // localization
       "nav": {
         "home": "Home" // nested localization
