@@ -3,7 +3,10 @@ Vue.use(Localize);
 let localize = Localize.config({
   debug: true,
   default: 'en-US',
-  available: ['en-US', 'es-SP', 'pr-BR'],
+  available: ['en-US', 'es-SP', 'pr-BR', {
+    locale: 'ar-MS',
+    orientation: 'rtl'
+  }],
   fallback: '?',
   localizations: {
     "en-US": {
@@ -19,6 +22,11 @@ let localize = Localize.config({
     "pr-BR": {
       header: {
         title: 'Portuguese'
+      }
+    },
+    "ar-MS": {
+      header: {
+        title: 'Arabic'
       }
     }
   }

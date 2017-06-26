@@ -52,12 +52,14 @@ var Localize = {
      } else {
        ops.locale = window.localStorage.getItem('localization');
      };
-   }; // # left here, finish orientation check
+   };
    window.localStorage.setItem('localization', ops.locale);
    let computed = ops.available.find(function(e) {
      return e.locale == ops.locale && e.orientation
    });
-   if (computed && computed.orientation) document.querySelector('body').setAttribute('dir', computed.orientation);
+   if (computed) {
+   	 if (computed.orientation) document.querySelector('body').setAttribute('dir', computed.orientation);
+   }; // locale options
    if (!ops.fallback) ops.fallback = 'N/A';
    return ops;
  }

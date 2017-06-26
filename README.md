@@ -25,7 +25,10 @@ Vue.use(Localize);
 
 let localize = Localize.config({
   default: 'en',
-  available: ['en-US', 'es-SP', 'pr-BR'],
+  available: ['en-US', 'es-SP', 'pr-BR', {
+    locale: 'ar-MS',
+    orientation: 'rtl'
+  }],
   fallback: '?',
   localizations: {
     "en-US": {
@@ -42,6 +45,11 @@ let localize = Localize.config({
       header: {
         title: 'Portuguese'
       }
+    },
+    "ar-MS": {
+      header: {
+        title: 'Arabic'
+      }
     }
   }
 });
@@ -52,7 +60,7 @@ new Vue({
 });
 ```
 
-Once your Vue app has been instantiated, the language can be changed by calling `$locale()` from your Vue instance. This will set your desired localization in local storage and reload your current window.
+Once your Vue app has been instantiated, the language can be changed by calling `$locale(args*)` from your Vue instance. This will set your desired localization in local storage and reload your current window.
 
 ```html
 <button @click="$locale('en-US')">English</button>
@@ -66,13 +74,24 @@ You can specify your localizations like so,
 <!-- Will replace this element's text with localized item -->
 <h2 v-localize="{item: 'header.title'}"></h2>
 ```
+Alternatively, you can get your current localization by calling `$locale()` without specifying a language.
+```html
+<h1>Locale: {{ $locale() }}</h1>
+```
 
 ### Configuration
 
-The plugin takes 4 options,
+The plugin takes 5 options,
 
+- `debug`: If enabled, will spit warnings and errors to console.
 - `default`: Default language key to target if not set already.
-- `available`: List of available localizations.
+- `available`: List of available localizations, can optionally specify locale options. ex;
+  ```js
+  ['en-US', 'es-SP', 'pr-BR', {
+    locale: 'ar-MS',
+    orientation: 'rtl'
+  }]
+  ```
 - `fallback`: Default text to show if localization for current language not found. If not specified, will default to `'N/A'`.
 - `localizations`: JSON object for localizations. ex;
    ```js
@@ -84,7 +103,13 @@ The plugin takes 4 options,
       }
     }
   }
-   ```
+  ```
+
+### Locale Options
+
+Locale configuration currently supports the following options,
+
+- `orientation`: Text direction of body, useful for orientation of script languages.
 
 ### Support
 
