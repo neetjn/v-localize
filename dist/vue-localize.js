@@ -44,13 +44,20 @@ var Localize = {
    if (!window.localStorage.getItem('localization')) {
      ops.locale = ops.default;
    } else {
-     if (ops.available.indexOf(window.localStorage.getItem('localization')) == -1) {
+   	 available = ops.available.map(function(locale) {
+       return locale.locale || locale;
+     });
+     if (available.indexOf(window.localStorage.getItem('localization')) == -1) {
        ops.locale = ops.default;
      } else {
        ops.locale = window.localStorage.getItem('localization');
      };
-   }
+   }; // # left here, finish orientation check
    window.localStorage.setItem('localization', ops.locale);
+   let computed = ops.available.find(function(e) {
+     return e.locale == ops.locale && e.orientation
+   });
+   if (computed && computed.orientation) document.querySelector('body').setAttribute('dir', computed.orientation);
    if (!ops.fallback) ops.fallback = 'N/A';
    return ops;
  }
