@@ -1,29 +1,38 @@
 Vue.use(Localize);
-
+ 
 let localize = Localize.config({
-	default: 'en',
-	available: ['en', 'sp', 'pr', 'ch'],
-	not_found: '?',
-	localizations: {
-		en: {
-			header: {
-				title: 'English'
-			}
-		},
-		sp: {
-			header: {
-				title: 'Spanish'
-			}
-		},
-		pr: {
-			header: {
-				title: 'Portuguese'
-			}
-		}
-	}
+  debug: true,
+  default: 'en-US',
+  available: ['en-US', 'es-SP', 'pr-BR', {
+    locale: 'ar-MS',
+    orientation: 'rtl'
+  }],
+  fallback: '?',
+  localizations: {
+    "en-US": {
+      header: {
+        title: 'English'
+      }
+    },
+    "es-SP": {
+      header: {
+        title: 'Spanish'
+      }
+    },
+    "pr-BR": {
+      header: {
+        title: 'Portuguese'
+      }
+    },
+    "ar-MS": {
+      header: {
+        title: 'Arabic'
+      }
+    }
+  }
 });
-
-new Vue({
-	el: '#app',
-	localize
-});
+ 
+ new Vue({
+   el: '#app',
+   localize
+ });

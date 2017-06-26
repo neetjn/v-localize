@@ -7,16 +7,18 @@
     <script type="text/javascript" src="vendor/vue-localize.min.js?t=1"></script>
   </head>
   <body>
-    <div id="app">
-      <!-- Will add a localized title to this element -->
-      <h1 v-localize="{item: 'header.title', locale: 'en', attr: 'title'}">Hello World</h1>
+    <div id='app'>
+      <!-- Will add a localized title to this element targeting en-US -->
+      <h1 v-localize="{item: 'header.title', locale: 'en-US', attr: 'title'}">Hello World</h1>
       <!-- Will replace this element's text with localized item -->
       <h2 v-localize="{item: 'header.title'}"></h2>
-      <select>
+      <!-- Will display our current locale -->
+      <h4>Locale: {{ $locale() }}</h4>
+      <select v-model="lang" @change="$locale(lang)">
         <option selected="selected" disabled="disabled">Select a language</option>
-        <option @click="$locale('en')">English</option>
-        <option @click="$locale('sp')">Spanish</option>
-        <option @click="$locale('pr')">Portuguese</option>
+        <option value="en-US">English</option>
+        <option value="es-SP">Spanish</option>
+        <option value="pr-BR">Portuguese</option>
       </select>
     </div>
     <script type="text/javascript" src="app.js"></script>
