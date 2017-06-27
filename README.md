@@ -112,7 +112,9 @@ The plugin takes 5 options,
 
 Locale configuration currently supports the following options,
 
-- `orientation`: Text direction of body, useful for orientation of script languages.
+- `orientation`: Text direction of target element, useful for orientation of script languages.
+- `font.family`: Font family to change to. Re: [https://www.w3schools.com/jsref/prop_style_fontfamily.asp]()
+- `font.size`: Font size to scale to. Re: [https://www.w3schools.com/jsref/prop_style_fontsize.asp]()
 
 ### Support
 
