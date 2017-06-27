@@ -27,7 +27,16 @@ var Localize = {
           if (localization === undefined && localize.debug) throw new Error('Cannot read property for ' + key + '.');
         });
         (!binding.value.attr) ? (el.innerHTML = localization) : (el.setAttribute(binding.value.attr, localization));
-        // # left here, update font details from options
+        if (!binding.value.attr) {
+          el.innerHTML = localization;
+          ops = localize.available.find((loc) => {
+            return loc.name == localize.locale;
+          });
+          if (ops.font) {
+            if (ops.font.family) el.style.fontFamily = ops.font.family; // # update element font family
+            if (opts.font.size) el.style.font // # update element font size
+          };
+        }
       } catch(e) {
         if (localize.debug) {
           console.error('v-localize:\n  Could not find localization for ' + binding.value.item + ' in ' + localize.locale + ' language.');
@@ -43,25 +52,21 @@ var Localize = {
      if (!ops.localizations[locale]) console.warn('v-localize:\n  Localizations for locale ' + locale + ' not found.');
    });
    if (!window.localStorage.getItem('localization')) {
-     ops.locale = ops.default;
+     ops.locale = ops.default; // # 
    } else {
    	 available = ops.available.map(function(locale) {
-       return locale.locale || locale;
+       return locale.locale || locale; // # reconstruct ignoring locale options
      });
-     if (available.indexOf(window.localStorage.getItem('localization')) == -1) {
-       ops.locale = ops.default;
-     } else {
-       ops.locale = window.localStorage.getItem('localization');
-     };
+     available.indexOf(window.localStorage.getItem('localization')) == -1 ? (ops.locale = ops.default) : (ops.locale = window.localStorage.getItem('localization'));
    };
-   window.localStorage.setItem('localization', ops.locale);
+   window.localStorage.setItem('localization', ops.locale); // # commit localization to local storage
    let computed = ops.available.find(function(e) {
-     return e.locale == ops.locale && e.orientation
+     return e.locale == ops.locale && e.orientation; // # return locale options
    });
    if (computed) {
-     if (computed.orientation) document.querySelector('body').setAttribute('dir', computed.orientation);
+     if (computed.orientation) document.querySelector('body').setAttribute('dir', computed.orientation); // # change text orientation
    }; // locale options
-   if (!ops.fallback) ops.fallback = 'N/A';
+   if (!ops.fallback) ops.fallback = 'N/A'; // # set default fallback
    return ops;
  }
 };
