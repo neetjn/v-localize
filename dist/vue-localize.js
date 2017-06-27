@@ -27,6 +27,7 @@ var Localize = {
           if (localization === undefined && localize.debug) throw new Error('Cannot read property for ' + key + '.');
         });
         (!binding.value.attr) ? (el.innerHTML = localization) : (el.setAttribute(binding.value.attr, localization));
+        // # left here, update font details from options
       } catch(e) {
         if (localize.debug) {
           console.error('v-localize:\n  Could not find localization for ' + binding.value.item + ' in ' + localize.locale + ' language.');
@@ -58,7 +59,7 @@ var Localize = {
      return e.locale == ops.locale && e.orientation
    });
    if (computed) {
-   	 if (computed.orientation) document.querySelector('body').setAttribute('dir', computed.orientation);
+     if (computed.orientation) document.querySelector('body').setAttribute('dir', computed.orientation);
    }; // locale options
    if (!ops.fallback) ops.fallback = 'N/A';
    return ops;
