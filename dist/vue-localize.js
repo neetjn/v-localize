@@ -32,9 +32,10 @@ var Localize = {
           ops = localize.available.find((loc) => {
             return loc.name == localize.locale;
           });
+          if (ops.orientation) el.setAttribute('dir', ops.orientation); // # change element display orientation
           if (ops.font) {
-            if (ops.font.family) el.style.fontFamily = ops.font.family; // # update element font family
-            if (opts.font.size) el.style.font // # update element font size
+            if (ops.font.family) el.style.fontFamily = ops.font.family; // # https://www.w3schools.com/jsref/prop_style_fontfamily.asp
+            if (opts.font.size) el.style.fontSize = opts.font.size; // # https://www.w3schools.com/jsref/prop_style_fontsize.asp
           };
         }
       } catch(e) {
@@ -60,12 +61,6 @@ var Localize = {
      available.indexOf(window.localStorage.getItem('localization')) == -1 ? (ops.locale = ops.default) : (ops.locale = window.localStorage.getItem('localization'));
    };
    window.localStorage.setItem('localization', ops.locale); // # commit localization to local storage
-   let computed = ops.available.find(function(e) {
-     return e.locale == ops.locale && e.orientation; // # return locale options
-   });
-   if (computed) {
-     if (computed.orientation) document.querySelector('body').setAttribute('dir', computed.orientation); // # change text orientation
-   }; // locale options
    if (!ops.fallback) ops.fallback = 'N/A'; // # set default fallback
    return ops;
  }
