@@ -2,7 +2,7 @@
   "name": "v-localize",
   "version": "1.1.0",
   "description": "Simple localization plugin for the amazing VueJS.",
-  "main": "dist/vue-localize.js",
+  "main": "dist/v-localize.js",
   "directories": {
     "example": "example"
   },
