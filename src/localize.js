@@ -1,5 +1,5 @@
 export default function (el, binding, vm) {
-  const localize = vm.context.$root.$options.localize
+  let localize = vm.context.$root.$options.localize
   if (!binding.value) el.innerHTML = localize.locale
   else {
     try {
