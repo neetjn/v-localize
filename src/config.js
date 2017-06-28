@@ -1,27 +1,4 @@
 export default function (options) {
-  /* # Example
-    Localize.config({
-      debug: true,
-      mode: 'hot',
-      default: 'en-US',
-      available: ['en-US', {
-        locale: 'ar-MS',
-        orientation: 'rtl'
-      }],
-      fallback: '?',
-      localizations: {
-        "en-US": {
-          header: {
-            title: 'English'
-          }
-        "ar-MS": {
-          header: {
-            title: 'Arabic'
-          }
-        }
-      }
-    })
-  */
   options.regex = /([a-zA-Z$]{1,}).*?/g  // # regex for searching for locale
   if (options.debug === undefined) options.debug = false
   if (options.mode === undefined || ('hot', 'stale').indexOf(options.mode) === -1) options.mode = 'hot'

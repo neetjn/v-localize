@@ -8,7 +8,7 @@ export default function (el, binding, vm) {
     })
     if (!binding.value.attr) {
       el.innerHTML = localization
-      const options = localize.available.find((loc) => {
+      const options = localize.available.find(function (loc) {
         return loc.locale == localize.locale  // # find options for locale if exists
       })
       if (options) {
