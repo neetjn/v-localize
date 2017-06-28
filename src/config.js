@@ -26,13 +26,13 @@ export default function (options) {
   if (options.debug === undefined) options.debug = false
   if (options.mode === undefined || ('hot', 'stale').indexOf(options.mode) === -1) options.mode = 'hot'
   options.available.forEach(function (locale) {
-    if (!options.localizations[locale] || !options.localizations[locale.locale]) {
-      if (options.debug) console.warn('v-localize:\n  Localizations for locale ' + locale + ' not found.')
-    } // # left here, fix so it can read from locale string not object
+    locale = locale.locale || locale // # for locales with options
+    if (!options.localizations[locale] && options.debug) {
+      console.warn('v-localize:\n  Localizations for locale ' + locale + ' not found.')
+    }
   })
-  if (!window.localStorage.getItem('localization')) {
-    options.locale = options.default // # if localization not defined in browsing session set locale to default
-  } else {
+  if (!window.localStorage.getItem('localization')) options.locale = options.default // # default to default locale if session does not exist
+  else {
     const available = options.available.map(function (locale) {
       return locale.locale || locale // # reconstruct ignoring locale options
     })

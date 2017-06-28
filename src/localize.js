@@ -6,10 +6,10 @@ export default function (el, binding, vm) {
       var regex = /([a-zA-Z$]{1,}).*?/g;
       var localization = localize.localizations[binding.value.locale || localize.locale];
       binding.value.item.match(regex).forEach(function (key) {
-        localization = localization[key];
-        if (localization === undefined && localize.debug) throw new Error('Cannot read property for ' + key + '.');
+        localization = localization[key]
+        if (localization === undefined && localize.debug) throw new Error('Cannot read property for ' + key + '.')
       });
-      (!binding.value.attr) ? (el.innerHTML = localization) : (el.setAttribute(binding.value.attr, localization));
+      (!binding.value.attr) ? (el.innerHTML = localization) : (el.setAttribute(binding.value.attr, localization))
       if (!binding.value.attr) {
         el.innerHTML = localization;
         ops = localize.available.find((loc) => {
@@ -26,7 +26,7 @@ export default function (el, binding, vm) {
     } catch (e) {
       if (localize.debug) {
         console.error('v-localize:\n  Could not find localization for ' + binding.value.item + ' in ' + localize.locale + ' language.');
-        console.error(e);
+        console.error(e)
       };
       (!binding.value.attr) ? (el.innerHTML = localize.fallback) : (el.setAttribute(binding.value.attr, localize.fallback));
     }
