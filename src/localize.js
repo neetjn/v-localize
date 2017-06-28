@@ -18,7 +18,7 @@ export default function (el, binding, vm) {
           if (options.font.size) el.style.fontSize = options.font.size  // # https://www.w3schools.com/jsref/prop_style_fontsize.asp
         };
       };
-    } else el.setAttribute(binding.value.attr, localization)
+    } else el.setAttribute(binding.value.attr, localization)  // # localize attribute
   } catch (e) {
     if (localize.debug) {
       console.error('v-localize:\n  Could not find localization for ' + binding.value.item + ' in ' + localize.locale + ' language.');
