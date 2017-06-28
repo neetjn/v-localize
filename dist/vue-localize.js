@@ -30,12 +30,14 @@ var Localize = {
         if (!binding.value.attr) {
           el.innerHTML = localization;
           ops = localize.available.find((loc) => {
-            return loc.name == localize.locale;
+            return loc.locale == localize.locale;
           });
-          if (ops.orientation) el.setAttribute('dir', ops.orientation); // # change element display orientation
-          if (ops.font) {
-            if (ops.font.family) el.style.fontFamily = ops.font.family; // # https://www.w3schools.com/jsref/prop_style_fontfamily.asp
-            if (opts.font.size) el.style.fontSize = opts.font.size; // # https://www.w3schools.com/jsref/prop_style_fontsize.asp
+          if (ops) {
+            if (ops.orientation) el.setAttribute('dir', ops.orientation); // # change element display orientation
+            if (ops.font) {
+              if (ops.font.family) el.style.fontFamily = ops.font.family; // # https://www.w3schools.com/jsref/prop_style_fontfamily.asp
+              if (ops.font.size) el.style.fontSize = ops.font.size; // # https://www.w3schools.com/jsref/prop_style_fontsize.asp
+            };
           };
         }
       } catch(e) {
