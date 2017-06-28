@@ -1,4 +1,27 @@
 export default function (options) {
+  /* # Example
+    Localize.config({
+      debug: true,
+      mode: 'hot',
+      default: 'en-US',
+      available: ['en-US', {
+        locale: 'ar-MS',
+        orientation: 'rtl'
+      }],
+      fallback: '?',
+      localizations: {
+        "en-US": {
+          header: {
+            title: 'English'
+          }
+        "ar-MS": {
+          header: {
+            title: 'Arabic'
+          }
+        }
+      }
+    })
+  */
   options.available.forEach(function (locale) {
     if (!options.localizations[locale]) console.warn('v-localize:\n  Localizations for locale ' + locale + ' not found.')
   });
