@@ -49,6 +49,7 @@
     "flow-bin": "^0.38.0",
     "karma": "^1.7.0",
     "mocha": "^3.4.2",
+    "nightwatch": "^0.9.16",
     "vue": "^2.3.4",
     "webpack": "^2.2.0",
     "webpack-dev-server": "^2.2.1"
