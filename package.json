@@ -47,7 +47,6 @@
     "eslint-plugin-vue-libs": "^1.2.0",
     "flow-bin": "^0.38.0",
     "vue": "^2.3.4",
-    "webpack": "^2.2.0",
-    "webpack-dev-server": "^2.2.1"
+    "webpack": "^2.2.0"
   }
 }
