@@ -11,6 +11,7 @@
   },
   "globals": {
     "$": true,
-    "Vue": true
+    "Vue": true,
+    "window": true
   }
 }
