@@ -7,7 +7,11 @@
     "example": "example"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "cross-env NODE_ENV=production node_modules/.bin/webpack --config build/webpack.conf.js",
+    "build:dev": "node_modules/.bin/webpack --config build/webpack.conf.js",
+    "lint": "node_modules/.bin/eslint src/**.js",
+    "test": "npm run lint && npm run test:unit",
+    "test:unit": ""
   },
   "repository": {
     "type": "git",
@@ -16,7 +20,9 @@
   "keywords": [
     "Vue",
     "Localize",
-    "Javascript"
+    "Javascript",
+    "i18n",
+    "internationalization"
   ],
   "author": "John Nolette",
   "license": "MIT",
