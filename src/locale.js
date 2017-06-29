@@ -6,7 +6,7 @@ export default function (lang) {
       window.localStorage.setItem('localization', lang)  // # update session localization
       switch (localize.mode) {
         case 'stale':
-          window.reload()  // # reload window with new locale
+          window.location.reload()  // # reload window with new locale
           break
         case 'hot':
           localize.linked.forEach(function (e) {
