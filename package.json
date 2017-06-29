@@ -10,8 +10,7 @@
     "build": "cross-env NODE_ENV=production node_modules/.bin/webpack --config build/webpack.conf.js",
     "build:dev": "node_modules/.bin/webpack --config build/webpack.conf.js",
     "lint": "node_modules/.bin/eslint src/**.js",
-    "test": "npm run lint && npm run test:e2e",
-    "test:e2e": ""
+    "test": "npm run lint",
   },
   "repository": {
     "type": "git",
