@@ -1,7 +1,8 @@
 export default function (options) {
   options.regex = /([a-zA-Z$]{1,}).*?/g  // # regex for searching for locale
   if (options.debug === undefined) options.debug = false
-  if (options.mode === undefined || ('hot', 'stale').indexOf(options.mode) === -1) options.mode = 'hot'
+  if (options.mode === undefined || ['hot', 'stale'].indexOf(options.mode) === -1) options.mode = 'stale'
+  if (options.mode === 'hot') options.linked = []
   options.available.forEach(function (locale) {
     locale = locale.locale || locale  // # for locales with options
     if (!options.localizations[locale] && options.debug) {
