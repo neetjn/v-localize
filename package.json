@@ -1,27 +1,52 @@
 {
   "name": "v-localize",
-  "version": "1.0.9",
+  "version": "1.1.0",
   "description": "Simple localization plugin for the amazing VueJS.",
-  "main": "dist/vue-localize.js",
+  "main": "dist/v-localize.js",
   "directories": {
     "example": "example"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "cross-env NODE_ENV=production node_modules/.bin/webpack --config build/webpack.conf.js",
+    "build:dev": "node_modules/.bin/webpack --config build/webpack.conf.js",
+    "lint": "node_modules/.bin/eslint src/**.js",
+    "test": "npm run lint"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/neetVeritas/vue-localize.git"
   },
   "keywords": [
-    "Vue",
-    "Localize",
-    "Javascript"
+    "vue",
+    "vue.js",
+    "localize",
+    "javascript",
+    "i18n",
+    "internationalization"
   ],
   "author": "John Nolette",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/neetVeritas/vue-localize/issues"
   },
-  "homepage": "https://github.com/neetVeritas/vue-localize#readme"
+  "homepage": "https://github.com/neetVeritas/vue-localize#readme",
+  "devDependencies": {
+    "babel-core": "^6.22.1",
+    "babel-eslint": "^7.2.3",
+    "babel-loader": "^7.1.1",
+    "babel-plugin-transform-runtime": "^6.22.0",
+    "babel-preset-env": "^1.3.2",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-flow-vue": "^1.0.0",
+    "babel-preset-stage-2": "^6.22.0",
+    "babel-register": "^6.22.0",
+    "cross-env": "^5.0.1",
+    "eslint": "^3.14.1",
+    "eslint-loader": "^1.6.1",
+    "eslint-plugin-flowtype": "^2.30.0",
+    "eslint-plugin-vue-libs": "^1.2.0",
+    "flow-bin": "^0.38.0",
+    "vue": "^2.3.4",
+    "webpack": "^2.2.0"
+  }
 }

@@ -1,10 +1,13 @@
 # **V-Localize**
 
+![https://travis-ci.org/neetVeritas/vue-localize.svg?branch=master](https://travis-ci.org/neetVeritas/vue-localize.svg?branch=master)
+[![npm version](https://badge.fury.io/js/v-localize.svg)](https://badge.fury.io/js/v-localize)
+
+[![NPM](https://nodei.co/npm/v-localize.png)](https://nodei.co/npm/v-localize/)
+
 ### About
 
 **V-Localize** is a very simple localization plugin for VueJS. Your localizations will be available anywhere in your web application wrapped in a Vue instance.
-
-Default language, default phrase, and your entire localization map can be defined when installing the plugin.
 
 ### Usage
 
@@ -24,8 +27,9 @@ import { Localize } from 'v-localize';
 Vue.use(Localize);
 
 let localize = Localize.config({
-  default: 'en',
-  available: ['en-US', 'es-SP', 'pr-BR', {
+  default: 'en-US',
+  mode: 'hot',
+  available: ['en-US', 'es-SP', {
     locale: 'ar-MS',
     orientation: 'rtl'
   }],
@@ -39,11 +43,6 @@ let localize = Localize.config({
     "es-SP": {
       header: {
         title: 'Spanish'
-      }
-    },
-    "pr-BR": {
-      header: {
-        title: 'Portuguese'
       }
     },
     "ar-MS": {
@@ -76,9 +75,9 @@ You can specify your localizations like so,
 ```
 Alternatively, you can get your current localization by calling `$locale()` without specifying a language.
 ```html
-<!-- from root component -->
+<!-- Will fetch current locale (from root component) -->
 <h1>Locale: {{ $locale() }}</h1>
-<!-- from child components -->
+<!-- Will fetch current locale (from child components) -->
 <h1>Locale: {{ $root.$locale() }}</h1>
 ```
 
@@ -87,6 +86,7 @@ Alternatively, you can get your current localization by calling `$locale()` with
 The plugin takes 5 options,
 
 - `debug`: If enabled, will spit warnings and errors to console.
+- `mode`: Will default to `stale`, which will refresh the current window with changes made to a user's locale. May be set to `hot` for real-time updates to binded directives.
 - `default`: Default language key to target if not set already.
 - `available`: List of available localizations, can optionally specify locale options. ex;
   ```js
@@ -112,7 +112,9 @@ The plugin takes 5 options,
 
 Locale configuration currently supports the following options,
 
-- `orientation`: Text direction of body, useful for orientation of script languages.
+- `orientation`: Text direction of target element, useful for orientation of script languages.
+- `font.family`: Font family to change to. Re: [https://www.w3schools.com/jsref/prop_style_fontfamily.asp]()
+- `font.size`: Font size to scale to. Re: [https://www.w3schools.com/jsref/prop_style_fontsize.asp]()
 
 ### Support
 

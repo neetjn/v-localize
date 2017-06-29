@@ -1,7 +1,8 @@
-Vue.use(Localize);
- 
-let localize = Localize.config({
+Vue.use(Localize)
+
+const localize = Localize.config({
   debug: true,
+  mode: 'hot',
   default: 'en-US',
   available: ['en-US', 'es-SP', 'pr-BR', {
     locale: 'ar-MS',
@@ -9,30 +10,30 @@ let localize = Localize.config({
   }],
   fallback: '?',
   localizations: {
-    "en-US": {
+    'en-US': {
       header: {
         title: 'English'
       }
     },
-    "es-SP": {
+    'es-SP': {
       header: {
         title: 'Spanish'
       }
     },
-    "pr-BR": {
+    'pr-BR': {
       header: {
         title: 'Portuguese'
       }
     },
-    "ar-MS": {
+    'ar-MS': {
       header: {
         title: 'Arabic'
       }
     }
   }
-});
- 
- new Vue({
-   el: '#app',
-   localize
- });
+})
+
+new Vue({
+  el: '#app',
+  localize
+})
