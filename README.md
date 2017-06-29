@@ -1,5 +1,10 @@
 # **V-Localize**
 
+![https://travis-ci.org/neetVeritas/vue-localize.svg?branch=master](https://travis-ci.org/neetVeritas/vue-localize.svg?branch=master)
+[![npm version](https://badge.fury.io/js/v-localize.svg)](https://badge.fury.io/js/v-localize)
+
+[![NPM](https://nodei.co/npm/v-localize.png)](https://nodei.co/npm/v-localize/)
+
 ### About
 
 **V-Localize** is a very simple localization plugin for VueJS. Your localizations will be available anywhere in your web application wrapped in a Vue instance.
