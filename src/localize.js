@@ -15,7 +15,7 @@ export default {
       if (!binding.value.attr) {
         el.innerHTML = localization
         const options = localize.available.find(function (loc) {
-          return loc.locale == localize.locale  // # find options for locale if exists
+          return loc.locale === localize.locale  // # find options for locale if exists
         })
         if (options) {
           if (options.orientation) el.setAttribute('dir', options.orientation)  // # change element display orientation
@@ -27,7 +27,7 @@ export default {
       } else el.setAttribute(binding.value.attr, localization)  // # localize attribute
     } catch (e) {
       if (localize.debug) {
-        console.error('v-localize:\n  Could not find localization for ' + binding.value.item + ' in ' + localize.locale + ' language.');
+        console.error('v-localize:\n  Could not find localization for ' + binding.value.item + ' in ' + localize.locale + ' language.')
         console.error(e)
       };
       (!binding.value.attr) ? (el.innerHTML = localize.fallback) : (el.setAttribute(binding.value.attr, localize.fallback))

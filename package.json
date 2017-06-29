@@ -18,9 +18,10 @@
     "url": "git+https://github.com/neetVeritas/vue-localize.git"
   },
   "keywords": [
-    "Vue",
-    "Localize",
-    "Javascript",
+    "vue",
+    "vue.js",
+    "Llcalize",
+    "javascript",
     "i18n",
     "internationalization"
   ],

@@ -14,7 +14,7 @@ export default function (options) {
     const available = options.available.map(function (locale) {
       return locale.locale || locale  // # reconstruct ignoring locale options
     })
-    available.indexOf(window.localStorage.getItem('localization')) === -1 ? (options.locale = options.default) : (options.locale = window.localStorage.getItem('localization'));
+    available.indexOf(window.localStorage.getItem('localization')) === -1 ? (options.locale = options.default) : (options.locale = window.localStorage.getItem('localization'))
   };
   window.localStorage.setItem('localization', options.locale)  // # commit localization to local storage
   if (!options.fallback) options.fallback = 'N/A'  // # set default fallback
