@@ -4,8 +4,6 @@
 
 **V-Localize** is a very simple localization plugin for VueJS. Your localizations will be available anywhere in your web application wrapped in a Vue instance.
 
-Default language, default phrase, and your entire localization map can be defined when installing the plugin.
-
 ### Usage
 
 To install via Bower, simply do the following:
