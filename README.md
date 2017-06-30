@@ -31,7 +31,10 @@ let localize = Localize.config({
   mode: 'hot',
   available: ['en-US', 'es-SP', {
     locale: 'ar-MS',
-    orientation: 'rtl'
+    orientation: 'rtl',
+    font: {
+      size: 'smaller'
+    }
   }],
   fallback: '?',
   localizations: {
