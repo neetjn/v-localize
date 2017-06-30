@@ -3,7 +3,7 @@ export default {
     const localize = vm.context.$root.$options.localize
     if (localize.mode === 'hot' && !localize.linked.find((e) => e.el === el)) {
       localize.linked.push({
-        el: el, binding: binding, vm: vm
+        el, binding, vm
       }) // # store localized properties for updates
     }
     try {
