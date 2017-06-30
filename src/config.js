@@ -17,6 +17,7 @@ export default function (options) {
     available.indexOf(window.localStorage.getItem('localization')) === -1 ? (options.locale = options.default) : (options.locale = window.localStorage.getItem('localization'))
   };
   window.localStorage.setItem('localization', options.locale)  // # commit localization to local storage
+  document.querySelector('html').setAttribute('lang', options.locale)  // # change document lang
   if (!options.fallback) options.fallback = 'N/A'  // # set default fallback
   return options
 }

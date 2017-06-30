@@ -12,6 +12,7 @@ export default function (lang) {
           localize.linked.forEach(function (e) {
             Vue.directive('localize').bind(e.el, e.binding, e.vm)  // # update all directive bindings
           })
+          document.querySelector('html').setAttribute('lang', lang)  // # change document lang
           break
         default:
           if (localize.debug) console.error('v-localize:\n  Mode could not be determined')
