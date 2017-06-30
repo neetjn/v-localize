@@ -75,10 +75,8 @@ You can specify your localizations like so,
 ```
 Alternatively, you can get your current localization by calling `$locale()` without specifying a language.
 ```html
-<!-- Will fetch current locale (from root component) -->
+<!-- Will fetch current locale -->
 <h1>Locale: {{ $locale() }}</h1>
-<!-- Will fetch current locale (from child components) -->
-<h1>Locale: {{ $root.$locale() }}</h1>
 ```
 
 ### Configuration

@@ -1,5 +1,5 @@
 export default function (lang) {
-  const localize = this.$options.localize
+  const localize = this.$root.$options.localize
   if (lang) {
     if (localize.available.find((e) => e.locale || e === lang)) {
       localize.locale = lang  // # update our locale
