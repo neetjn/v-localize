@@ -7,7 +7,7 @@
     "example": "example"
   },
   "scripts": {
-    "build": "cross-env NODE_ENV=production node_modules/.bin/webpack --config build/webpack.conf.js",
+    "build": "node_modules/.bin/cross-env NODE_ENV=production node_modules/.bin/webpack --config build/webpack.conf.js",
     "build:dev": "node_modules/.bin/webpack --config build/webpack.conf.js",
     "lint": "node_modules/.bin/eslint src/**.js",
     "test": "npm run lint"
