@@ -38,5 +38,8 @@ const localize = Localize.config({
 
 new Vue({
   el: '#app',
-  localize
+  localize,
+  data: {
+    lang: 'en-US'
+  }
 })
