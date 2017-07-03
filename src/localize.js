@@ -1,10 +1,17 @@
 export default {
+  unbind: function (el, binding, vm) {
+    const localize = vm.context.$root.$options.localize
+    const check = localize.linked.find((e) => e.el === el)
+    if (localize.mode === 'hot' && check !== -1) {
+      localize.linked.splice(localize.linked.indexOf(check), 1)  // # remove from store
+    }
+  },
   bind: function (el, binding, vm) {
     const localize = vm.context.$root.$options.localize
     if (localize.mode === 'hot' && !localize.linked.find((e) => e.el === el)) {
       localize.linked.push({
         el, binding, vm
-      }) // # store localized properties for updates
+      })  // # store localized properties for updates
     }
     try {
       var localization = localize.localizations[binding.value.locale || localize.locale]
