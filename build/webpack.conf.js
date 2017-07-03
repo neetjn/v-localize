@@ -11,7 +11,6 @@ module.exports = {
     path: resolve('./dist'),
     publicPath: 'dist/',
     filename: 'v-localize.js',
-    library: ['Localize'],
     libraryTarget: 'umd',
     umdNamedDefine: true
   },

@@ -31,7 +31,10 @@ let localize = Localize.config({
   mode: 'hot',
   available: ['en-US', 'es-SP', {
     locale: 'ar-MS',
-    orientation: 'rtl'
+    orientation: 'rtl',
+    font: {
+      size: 'smaller'
+    }
   }],
   fallback: '?',
   localizations: {
@@ -84,7 +87,7 @@ Alternatively, you can get your current localization by calling `$locale()` with
 The plugin takes 5 options,
 
 - `debug`: If enabled, will spit warnings and errors to console.
-- `mode`: Will default to `stale`, which will refresh the current window with changes made to a user's locale. May be set to `hot` for real-time updates to binded directives.
+- `mode`: Will default to `stale`, which will commit changes to local storage -- a window reload is necessary to view changes. To automatically reload the window, set the mode to `reload`. May be set to `hot` for real-time updates to binded directives.
 - `default`: Default language key to target if not set already.
 - `available`: List of available localizations, can optionally specify locale options. ex;
   ```js

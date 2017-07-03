@@ -6,7 +6,10 @@ const localize = Localize.config({
   default: 'en-US',
   available: ['en-US', 'es-SP', 'pr-BR', {
     locale: 'ar-MS',
-    orientation: 'rtl'
+    orientation: 'rtl',
+    font: {
+      size: 'smaller'
+    }
   }],
   fallback: '?',
   localizations: {
@@ -35,5 +38,8 @@ const localize = Localize.config({
 
 new Vue({
   el: '#app',
-  localize
+  localize,
+  data: {
+    lang: 'en-US'
+  }
 })
