@@ -7,7 +7,7 @@
 
 ### About
 
-**V-Localize** is a very simple localization plugin for VueJS. Your localizations will be available anywhere in your web application wrapped in a Vue instance.
+**V-Localize** is a very simple localization plugin for Vue.js. Your localizations will be available anywhere in your web application wrapped in a Vue instance.
 
 ### Usage
 
@@ -119,7 +119,7 @@ Locale configuration currently supports the following options,
 
 ### Support
 
-**V-Localize** was developed using VueJS 2.x, support previous versions is not available.
+**V-Localize** was developed using Vue.js 2.x, support previous versions is not available.
 
 ---
 Copyright (c) 2017 John Nolette Licensed under the MIT license.
