@@ -1,6 +1,6 @@
 # **V-Localize**
 
-![https://travis-ci.org/neetVeritas/vue-localize.svg?branch=master](https://travis-ci.org/neetVeritas/vue-localize)
+[![build](https://travis-ci.org/neetVeritas/vue-localize.svg?branch=master)](https://travis-ci.org/neetVeritas/vue-localize/)
 [![npm version](https://badge.fury.io/js/v-localize.svg)](https://badge.fury.io/js/v-localize)
 
 [![NPM](https://nodei.co/npm/v-localize.png)](https://nodei.co/npm/v-localize/)
