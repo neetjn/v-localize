@@ -15,9 +15,13 @@ To install via Bower, simply do the following:
 ```sh
 bower install v-localize
 ```
-or you can install via npm:
+To install via NPM:
 ```sh
 npm install v-localize
+```
+v-localize can also be referenced using jsdelivr:
+```html
+<script src="https://cdn.jsdelivr.net/npm/v-localize/dist/v-localize.js"></script>
 ```
 Installing the plugin is then as simple as:
 
