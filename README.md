@@ -19,7 +19,7 @@ To install via NPM:
 ```sh
 npm install v-localize
 ```
-v-localize can also be referenced using jsdelivr:
+For a quick start using jsdelivr:
 ```html
 <script src="https://cdn.jsdelivr.net/npm/v-localize/dist/v-localize.js"></script>
 ```
