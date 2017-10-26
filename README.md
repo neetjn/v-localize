@@ -4,10 +4,10 @@
 
 # **V-Localize**
 
-[![NPM](https://nodei.co/npm/v-localize.png)](https://nodei.co/npm/v-localize/)
-
 [![build](https://travis-ci.org/neetjn/v-localize.svg?branch=master)](https://travis-ci.org/neetjn/v-localize/)
 [![npm version](https://badge.fury.io/js/v-localize.svg)](https://badge.fury.io/js/v-localize)
+
+[![NPM](https://nodei.co/npm/v-localize.png)](https://nodei.co/npm/v-localize/)
 
 ### About
 
