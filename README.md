@@ -4,10 +4,10 @@
   <img alt='Sponsor' width='888' height='68' src='https://app.codesponsor.io/embed/ymhxqZ47jLBFuVrU2iywqLGC/neetjn/v-localize.svg' />
 </a>
 
+[![NPM](https://nodei.co/npm/v-localize.png)](https://nodei.co/npm/v-localize/)
+
 [![build](https://travis-ci.org/neetjn/v-localize.svg?branch=master)](https://travis-ci.org/neetjn/v-localize/)
 [![npm version](https://badge.fury.io/js/v-localize.svg)](https://badge.fury.io/js/v-localize)
-
-[![NPM](https://nodei.co/npm/v-localize.png)](https://nodei.co/npm/v-localize/)
 
 ### About
 
