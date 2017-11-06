@@ -10,7 +10,9 @@
     "build": "node_modules/.bin/cross-env NODE_ENV=production node_modules/.bin/webpack --config build/webpack.conf.js",
     "build:dev": "node_modules/.bin/webpack --config build/webpack.conf.js",
     "lint": "node_modules/.bin/eslint src/**.js",
-    "test": "npm run lint"
+    "test:unit": "node_modules/.bin/jasmine test/unit/spec.*.js",
+    "test:e2e": "node_modules/.bin/karma start test/karma.conf.js",
+    "test": "npm run lint && npm run test:unit && npm run test:e2e"
   },
   "repository": {
     "type": "git",
