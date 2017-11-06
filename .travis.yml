@@ -1,11 +1,20 @@
+dist: trusty
 language: node_js
 node_js:
-  - "7"
-cache:
-  directories:
-    - "node_modules"
+- '8'
 install:
-  - "npm install"
+- npm install
+before_script:
+  - 'export DISPLAY=:99.0'
+  - 'sh -e /etc/init.d/xvfb start'  # start xvfb for karma tests
+  - sleep 3 # give xvfb some time to start
 script:
-  - "npm run lint"
-  - "npm run build"
+- npm run build
+- npm run test
+deploy:
+  provider: npm
+  email: john@neetgroup.net
+  api_key:
+    secure: X17ZBPpbYGxXtXJ4l/XqYB3hZiba9b9U30s1AyqwJuT38PvVp96ECUmQZOuVCTEVJACk46ouZtw/uhewKlYVKbyrZXn37xsUZ6jWxICEjK+h4AvU3vBqdbFnjm3UpkCZJ7zK+GwIl0MahH09W6mcJG1/jXZAHwCz3pvPqFrCmGKHZhecnKbuySASTQV6jsLQil7EOJu5W3xUHxPU9OclHZEOnUw5jgdnS3nDYu7/EOQm2/aWNHXz+FBJYyyyJsQ7gUfE9FiPUMxVIX5n5nVaOUjAwhJNjsej8xR0ew99ynm7+1nwJRFCzdCFK8m2/+vWkcFqsB+JuysseGrs/brq82dA0W8xTHyCheGZZ/l/L4rw1WDx/9FVfsyEAvpSkKosKP33k5w+YEhchN8xALJx9bOlPDHQnJRWvKJFXxxz3cd9EFT5ekTh9g/da7XBSA1RknOq+Y6hzfUmtXBefXGzQk5zNoNC9LlkiAGH68hamQv7dAFrP5wVcyCoMaPsG/Lu3EZ96lqAMKrgDrVE/bNfDGDI1Y0bwxaWcFZhUK2NKJtw46jowONbmyK2AGfgCplr1P/lwMR+pV4UphqksRDP05usiojFJ3g99/qeUqnXqt38xLGCLWOn0S4w2dJdXeyVXCAsOLMAnPERTG87MxQXAtUfcAAVRL5xMtzduWeDvp8=
+  on:
+    branch: master
