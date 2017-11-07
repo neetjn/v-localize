@@ -31,7 +31,7 @@ export class Logger {
   log (message) {
     const time = this.time
     if (this.debugging) {
-      console.log(`[${new Date(time).toString()}]: "${message}"`)
+      console.log(`[${new Date(time).toString()}]: (v-localize) "${message}"`)
     }
     this.logs.push({ type: 'general', message, time })
   }
@@ -43,7 +43,7 @@ export class Logger {
   warn (message) {
     const time = this.time
     if (this.debugging) {
-      console.warn(`[${new Date(time).toString()}]: "${message}"`)
+      console.warn(`[${new Date(time).toString()}]: (v-localize) "${message}"`)
     }
     this.logs.push({ type: 'warning', message, time })
   }
@@ -55,7 +55,7 @@ export class Logger {
   error (message) {
     const time = this.time
     if (this.debugging) {
-      console.error(`[${new Date(time).toString()}]: "${message}"`)
+      console.error(`[${new Date(time).toString()}]: (v-localize) "${message}"`)
     }
     this.logs.push({ type: 'critical', message, time })
   }

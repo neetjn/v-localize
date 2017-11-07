@@ -5,14 +5,14 @@ import { Logger } from './logger'
  * v-localize configuration builder
  * @param {object} options - v-localize options.
  */
-export default function config (options) {
+export function config (options) {
   const localize = Object.assign({}, options)
 
   localize.$constants = constants
   if (localize.debug === undefined) {
     localize.debug = false
   }
-  localize.$logger = Logger(localize.debug)
+  localize.$logger = new Logger(localize.debug)
   if (localize.mode === undefined || ['hot', 'stale'].indexOf(localize.mode) === -1) {
     localize.mode = 'stale'
   }

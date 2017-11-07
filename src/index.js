@@ -1,5 +1,5 @@
-import { install } from './install.js'
-import { config } from './config.js'
+import { install } from './install'
+import { config } from './config'
 
 export default {
   install,
