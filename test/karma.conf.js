@@ -2,8 +2,10 @@ module.exports = function (config) {
   config.set({
     basePath: '',
     browsers: ['Electron'],
+    customContextFile: 'context.html',
     frameworks: ['jasmine', 'riot'],
     files: [
+      'vendor/*.js',
       '../dist/v-localize.js',
       'mocks.js',
       'unit/helpers/*.js',
