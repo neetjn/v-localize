@@ -1,6 +1,6 @@
 /**
- * Config
- * @param {*} options
+ * v-localize configuration builder
+ * @param {object} options - v-localize options.
  */
 export default function config (options) {
   options.regex = /([a-zA-Z$]{1,}).*?/g  // # regex for searching for locale

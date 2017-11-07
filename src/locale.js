@@ -2,7 +2,7 @@
  * v-localize $locale(args*) mixin
  * @param {string} lang - Language to change to.
  */
-export default function (lang) {
+export default function locale (lang) {
   const localize = this.$root.$options.localize
   if (lang) {
     if (localize.available.find((e) => e.locale || e === lang)) {
