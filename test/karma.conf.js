@@ -5,8 +5,8 @@ module.exports = function (config) {
     browsers: ['Electron'],
     frameworks: ['jasmine', 'riot'],
     files: [
+      '../dist/v-localize.js',
       'mocks.js',
-      '../dist/riot-view-router.js',
       'unit/helpers/*.js',
       'unit/spec.*.js'
     ],
