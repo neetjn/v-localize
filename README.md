@@ -6,6 +6,7 @@
 
 [![build](https://travis-ci.org/neetjn/v-localize.svg?branch=master)](https://travis-ci.org/neetjn/v-localize/)
 [![npm version](https://badge.fury.io/js/v-localize.svg)](https://badge.fury.io/js/v-localize)
+[![Code Health](https://landscape.io/github/neetjn/v-localize/master/landscape.svg?style=flat)](https://landscape.io/github/neetjn/v-localize/master)
 
 [![NPM](https://nodei.co/npm/v-localize.png)](https://nodei.co/npm/v-localize/)
 
