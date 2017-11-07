@@ -1,3 +1,7 @@
+/**
+ * v-localize $locale(args*) mixin
+ * @param {string} lang - Language to change to.
+ */
 export default function (lang) {
   const localize = this.$root.$options.localize
   if (lang) {
@@ -6,7 +10,9 @@ export default function (lang) {
       switch (localize.mode) {
         case 'stale':
           window.localStorage.setItem('localization', lang)  // # update session localization
-          if (localize.debug) console.info('v-localize:\n  Local storage updated, waiting for reload.')
+          if (localize.debug) {
+            console.info('v-localize:\n  Local storage updated, waiting for reload.')
+          }
           break
         case 'reload':
           window.localStorage.setItem('localization', lang)  // # update session localization
@@ -20,8 +26,14 @@ export default function (lang) {
           document.querySelector('html').setAttribute('lang', lang)  // # change document lang
           break
         default:
-          if (localize.debug) console.error('v-localize:\n  Mode could not be determined')
+          if (localize.debug) {
+            console.error('v-localize:\n  Mode could not be determined')
+          }
       }
-    } else if (localize.debug) console.error('v-localize:\n  Locale "' + lang + '" not defined in configuration')
-  } else return localize.locale
+    } else if (localize.debug) {
+      console.error('v-localize:\n  Locale "' + lang + '" not defined in configuration')
+    }
+  } else {
+    return localize.locale
+  }
 }
