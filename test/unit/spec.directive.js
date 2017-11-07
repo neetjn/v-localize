@@ -1,7 +1,13 @@
 describe('v-localize', function() {
 
-  it('', function() {
+  beforeEach(function() {
+    Vue.use(Localize)
+  })
 
+  describe('directive', function() {
+    it('should ', function() {
+
+    })
   })
 
 })
