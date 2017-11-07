@@ -1,37 +1,47 @@
+import { constants } from './constants'
+import { Logger } from './logger'
+
 /**
  * v-localize configuration builder
  * @param {object} options - v-localize options.
  */
 export default function config (options) {
-  options.regex = /([a-zA-Z$]{1,}).*?/g  // # regex for searching for locale
-  if (options.debug === undefined) {
-    options.debug = false
+  const localize = Object.assign({}, options)
+
+  localize.$constants = constants
+  if (localize.debug === undefined) {
+    localize.debug = false
   }
-  if (options.mode === undefined || ['hot', 'stale'].indexOf(options.mode) === -1) {
-    options.mode = 'stale'
+  localize.$logger = Logger(localize.debug)
+  if (localize.mode === undefined || ['hot', 'stale'].indexOf(localize.mode) === -1) {
+    localize.mode = 'stale'
   }
-  if (options.mode === 'hot') {
-    options.linked = []
+  if (localize.mode === 'hot') {
+    localize.linked = []
   }
-  options.available.forEach(function (locale) {
-    locale = locale.locale || locale  // # for locales with options
-    if (!options.localizations[locale] && options.debug) {
+  localize.available.forEach(function (locale) {
+    locale = locale.locale || locale  // # for locales with localize
+    if (!localize.localizations[locale]) {
+      localize.$logger
       console.warn('v-localize:\n  Localizations for locale ' + locale + ' not found.')
     }
   })
   if (!window.localStorage.getItem('localization')) {
-    options.locale = options.default  // # default to default locale if session does not exist
+    localize.locale = localize.default  // # default to default locale if session does not exist
   } else {
-    const available = options.available.map(function (locale) {
-      return locale.locale || locale  // # reconstruct ignoring locale options
+    const available = localize.available.map(function (locale) {
+      return locale.locale || locale  // # reconstruct ignoring locale localize
     })
-    available.indexOf(window.localStorage.getItem('localization')) === -1 ?
-      (options.locale = options.default) : (options.locale = window.localStorage.getItem('localization'))
+    if (available.indexOf(window.localStorage.getItem('localization')) === -1) {
+      localize.locale = localize.default
+    } else {
+      localize.locale = window.localStorage.getItem('localization')
+    }
   }
-  window.localStorage.setItem('localization', options.locale)  // # commit localization to local storage
-  document.querySelector('html').setAttribute('lang', options.locale)  // # change document lang
-  if (!options.fallback) {
-    options.fallback = 'N/A'  // # set default fallback
+  window.localStorage.setItem('localization', localize.locale)  // # commit localization to local storage
+  document.querySelector('html').setAttribute('lang', localize.locale)  // # change document lang
+  if (!localize.fallback) {
+    localize.fallback = 'N/A'  // # set default fallback
   }
-  return options
+  return localize
 }

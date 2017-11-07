@@ -10,6 +10,7 @@ export const directive = {
    */
   unbind: function (el, binding, vnode) {
     const localize = vnode.context.$root.$options.localize
+
     const check = localize.linked.find((e) => e.el === el)
     if (localize.mode === 'hot' && check !== -1) {
       localize.linked.splice(localize.linked.indexOf(check), 1)  // # remove from store
@@ -23,6 +24,7 @@ export const directive = {
    */
   bind: function (el, binding, vm) {
     const localize = vm.context.$root.$options.localize
+
     if (localize.mode === 'hot' && !localize.linked.find((e) => e.el === el)) {
       localize.linked.push({
         el, binding, vm
@@ -30,10 +32,10 @@ export const directive = {
     }
     try {
       var localization = localize.localizations[binding.value.locale || localize.locale]
-      binding.value.item.match(localize.regex).forEach(function (key) {
+      binding.value.item.match(localize.$constants.regex.item).forEach(function (key) {
         localization = localization[key]
-        if (localization === undefined && localize.debug) {
-          throw new Error('Cannot read property for ' + key + '.')
+        if (localization === undefined) {
+          throw new Error(`Cannot read property for "${key}".`)
         }
       })
       if (!binding.value.attr) {
@@ -56,12 +58,14 @@ export const directive = {
         }
       } else el.setAttribute(binding.value.attr, localization)  // # localize attribute
     } catch (e) {
-      if (localize.debug) {
-        console.error('v-localize:\n  Could not find localization for ' +
-          binding.value.item + ' in ' + localize.locale + ' language.')
-        console.error(e)
+      localize.$logger.warn(
+        `Could not find localization for "${binding.value.item}" in ${localize.locale} languages`)
+      localize.$logger.error(e)
+      if (!binding.value.attr) {
+        el.innerHTML = localize.fallback
+      } else {
+        el.setAttribute(binding.value.attr, localize.fallback)
       }
-      (!binding.value.attr) ? (el.innerHTML = localize.fallback) : (el.setAttribute(binding.value.attr, localize.fallback))
     }
   }
 

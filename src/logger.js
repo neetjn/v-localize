@@ -1,14 +1,14 @@
 export class Logger {
 
   /**
-   * Logging interface for the riot-view-router mixin.
-   * @param {Router} router - Router for utilities to reference
+   * Logging interface for v-localize
+   * @param {bool} debugging - Debug to console.
    */
-  constructor (router) {
-    this.$router = router
+  constructor (debugging) {
+    this.debugging = debugging
     this.logs = []
 
-    Object.defineProperty(this.$router, 'time', {
+    Object.defineProperty(this, 'time', {
       get: function () {
         return new Date().getTime()
       }
@@ -21,7 +21,7 @@ export class Logger {
    * @returns {Array}
    */
   $get (type) {
-    return this.logs.filter((log) => type ? log.type == type : true)
+    return this.logs.filter((log) => type ? log.type === type : true)
   }
 
   /**
@@ -29,12 +29,10 @@ export class Logger {
    * @param {string} message - Message to log.
    */
   log (message) {
-    var self = this.$router
-    let time = self.time
-
-    if (self.debugging)
+    const time = this.time
+    if (this.debugging) {
       console.log(`[${new Date(time).toString()}]: "${message}"`)
-
+    }
     this.logs.push({ type: 'general', message, time })
   }
 
@@ -43,12 +41,10 @@ export class Logger {
    * @param {string} message - Message to log.
    */
   warn (message) {
-    var self = this.$router
-    let time = self.time
-
-    if (self.debugging)
+    const time = this.time
+    if (this.debugging) {
       console.warn(`[${new Date(time).toString()}]: "${message}"`)
-
+    }
     this.logs.push({ type: 'warning', message, time })
   }
 
@@ -57,12 +53,10 @@ export class Logger {
    * @param {string} message - Message to log.
    */
   error (message) {
-    var self = this.$router
-    let time = self.time
-
-    if (self.debugging)
+    const time = this.time
+    if (this.debugging) {
       console.error(`[${new Date(time).toString()}]: "${message}"`)
-
+    }
     this.logs.push({ type: 'critical', message, time })
   }
 
