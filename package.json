@@ -50,7 +50,6 @@
     "karma": "^1.7.1",
     "karma-electron": "^5.2.1",
     "karma-jasmine": "^1.1.0",
-    "karma-riot": "^2.0.0",
     "vue": "^2.5.0",
     "webpack": "^3.8.1"
   }
