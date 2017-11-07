@@ -1,4 +1,4 @@
-import { version } from './package'
+import { version } from '../package'
 
 export const constants = {
   version,
