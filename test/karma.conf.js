@@ -3,7 +3,7 @@ module.exports = function (config) {
     basePath: '',
     browsers: ['Electron'],
     customContextFile: 'context.html',
-    frameworks: ['jasmine', 'riot'],
+    frameworks: ['jasmine'],
     files: [
       'vendor/*.js',
       '../dist/v-localize.js',
