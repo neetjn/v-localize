@@ -4,11 +4,10 @@
 
 # **V-Localize**
 
-[![Join the chat at https://gitter.im/v-localize/Lobby](https://badges.gitter.im/v-localize/Lobby.svg)](https://gitter.im/v-localize/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-
 [![build](https://travis-ci.org/neetjn/v-localize.svg?branch=master)](https://travis-ci.org/neetjn/v-localize/)
 [![npm version](https://badge.fury.io/js/v-localize.svg)](https://badge.fury.io/js/v-localize)
 [![Code Health](https://landscape.io/github/neetjn/v-localize/master/landscape.svg?style=flat)](https://landscape.io/github/neetjn/v-localize/master)
+[![Join the chat at https://gitter.im/v-localize/Lobby](https://badges.gitter.im/v-localize/Lobby.svg)](https://gitter.im/v-localize/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 [![NPM](https://nodei.co/npm/v-localize.png)](https://nodei.co/npm/v-localize/)
 
