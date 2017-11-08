@@ -1,13 +1,14 @@
 <!DOCTYPE>
 <html lang="en">
   <head>
-    <meta chartset="utf-8">
-    <title>Vue-Localize Demo</title>
+    <title></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
   </head>
   <body>
     <div id='app'>
       <!-- Will add a localized title to this element targeting en-US -->
-      <h1 id="attributeEnglish" v-localize="{item: 'header.title', locale: 'en-US', attr: 'title'}">Hello World</h1>
+      <h1 id="attributeLocalized" v-localize="{item: 'header.title', locale: 'en-US', attr: 'title'}">Hello World</h1>
       <!-- Will replace this element's text with localized item -->
       <h2 id="titleLocalized" v-localize="{item: 'header.title'}"></h2>
       <!-- Will display our current locale -->
@@ -19,5 +20,18 @@
         <option value="pr-BR">Portuguese</option>
       </select>
     </div>
+    <script src="context.js"></script>
+    <script type="text/javascript">
+      // Configure our Karma and set up bindings
+      %CLIENT_CONFIG%
+      window.__karma__.setupContext(window);
+      // All served files with the latest timestamps
+      %MAPPINGS%
+    </script>
+    <!-- Dynamically replaced with <script> tags -->
+    %SCRIPTS%
+    <script type="text/javascript">
+      window.__karma__.loaded();
+    </script>
   </body>
 </html>
