@@ -1,0 +1,10 @@
+{
+  "root": true,
+  "rules": {
+    "object-curly-spacing": ["error", "always"],
+    "semi": ["error", "never"],
+    "space-before-blocks": ["error", "always"],
+    "quotes": ["error", "single"],
+    "no-unused-vars": ["error", "always"]
+  }
+}
