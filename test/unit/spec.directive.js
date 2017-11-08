@@ -1,17 +1,4 @@
 describe('v-localize', function() {
-
-  beforeEach(function() {
-    Vue.use(Localize)
-    let localize = Localize.config(mocks.config)
-    App = new Vue({
-      el: '#app',
-      localize,
-      data: {
-        lang: mocks.config.default
-      }
-    })
-  })
-
   describe('directive', function() {
     it('should localize element text on startup', function(done) {
       let check = setInterval(() => {
@@ -32,5 +19,4 @@ describe('v-localize', function() {
       }, 10)
     })
   })
-
 })

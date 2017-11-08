@@ -8,6 +8,7 @@ module.exports = function (config) {
       'vendor/*.js',
       '../dist/v-localize.js',
       'mocks.js',
+      'unit/helpers/*.js',
       'unit/spec.*.js'
     ],
     reporters: ['progress'],
