@@ -7,7 +7,8 @@ describe('v-localize', function() {
           clearInterval(check)
           done()
         }
-      }, 10)
+        console.log(element.innerText)
+      }, 250)
     })
     it('should localize attribute on startup', function(done) {
       let check = setInterval(() => {
@@ -16,7 +17,7 @@ describe('v-localize', function() {
           clearInterval(check)
           done()
         }
-      }, 10)
+      }, 250)
     })
   })
 })

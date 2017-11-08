@@ -12,7 +12,7 @@
       <!-- Will replace this element's text with localized item -->
       <h2 id="titleLocalized" v-localize="{item: 'header.title'}"></h2>
       <!-- Will display our current locale -->
-      <h4>Locale: {{ $locale() }}</h4>
+      <h4 id="locale">Locale: {{ $locale() }}</h4>
       <select v-model="lang" @change="$locale(lang)">
         <option selected="selected" disabled="disabled">Select a language</option>
         <option value="en-US">English</option>
