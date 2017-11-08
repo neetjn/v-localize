@@ -5,9 +5,9 @@ node_js:
 install:
 - npm install
 before_script:
-  - 'export DISPLAY=:99.0'
-  - 'sh -e /etc/init.d/xvfb start'  # start xvfb for karma tests
-  - sleep 3 # give xvfb some time to start
+- export DISPLAY=:99.0
+- sh -e /etc/init.d/xvfb start
+- sleep 3
 script:
 - npm run build
 - npm run test
@@ -15,6 +15,6 @@ deploy:
   provider: npm
   email: john@neetgroup.net
   api_key:
-    secure: X17ZBPpbYGxXtXJ4l/XqYB3hZiba9b9U30s1AyqwJuT38PvVp96ECUmQZOuVCTEVJACk46ouZtw/uhewKlYVKbyrZXn37xsUZ6jWxICEjK+h4AvU3vBqdbFnjm3UpkCZJ7zK+GwIl0MahH09W6mcJG1/jXZAHwCz3pvPqFrCmGKHZhecnKbuySASTQV6jsLQil7EOJu5W3xUHxPU9OclHZEOnUw5jgdnS3nDYu7/EOQm2/aWNHXz+FBJYyyyJsQ7gUfE9FiPUMxVIX5n5nVaOUjAwhJNjsej8xR0ew99ynm7+1nwJRFCzdCFK8m2/+vWkcFqsB+JuysseGrs/brq82dA0W8xTHyCheGZZ/l/L4rw1WDx/9FVfsyEAvpSkKosKP33k5w+YEhchN8xALJx9bOlPDHQnJRWvKJFXxxz3cd9EFT5ekTh9g/da7XBSA1RknOq+Y6hzfUmtXBefXGzQk5zNoNC9LlkiAGH68hamQv7dAFrP5wVcyCoMaPsG/Lu3EZ96lqAMKrgDrVE/bNfDGDI1Y0bwxaWcFZhUK2NKJtw46jowONbmyK2AGfgCplr1P/lwMR+pV4UphqksRDP05usiojFJ3g99/qeUqnXqt38xLGCLWOn0S4w2dJdXeyVXCAsOLMAnPERTG87MxQXAtUfcAAVRL5xMtzduWeDvp8=
+    secure: JKhmrM0Q8bFtARFWrEkcBYB8iDaUJTnZH24oVuRWPwGzrvBbRAcmQrYz+MiEXgdx+atT6A2kwdPMDVQvutWAdoYZMnUwHZ6Z4KCuG4oDwSXv+9c82RxBnVXZYkrNkrWUVjXhB/WvcXR0XmuFH3u+clYpHFfZX5EPXpu8ZgZfTQfhvoV50pHQJkvh7aZs6pQN1o6HZuBzy3F9j9uvxO5sCAxmpTP6kZQGIcDOqBDPJFS5o13WDNuVBnAGTcp5t2OXCPyQVjsPE4WMPBhVecUY4u1unLRnMB9blLUh8fWVU7HloeTzyKoBU2tfmD6iXP/Sj1fGWKKrwUpLZua2bXyC8UUQy2tR/kfBBvGfQa1n2QQx77Df5vReDVCkKtbLuVhekSEUCQwQPIw6pKYadBbWbXpgH78Th0o7Cvnqo0wx2B6k7/4uUVpVDhADpjcRzeFVY3IYK6qm4ezxgev1EXk53yedIU6vT0r2WiNnORIaNURtpN9jS+CYBzcAs9d+bioYkDeKby0P1R2XebuI230aDn2Jd1ayqQSz9TYiLNN102A+noNB7UsscKGvlwkDjU6EsL33GVPJsuJbLA53fnHYfr7kb3Ade2oDSr304LC1umHbIEzVkCoyQtSHkqsT/HUVcCZnX0Xk9V16DN6sigq8NhogUyuwZ1qyIxsZtECkHxg=
   on:
     branch: master
