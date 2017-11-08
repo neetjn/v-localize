@@ -11,7 +11,7 @@
     "Localize",
     "Javascript"
   ],
-  "homepage": "https://github.com/neetVeritas/vue-localize",
+  "homepage": "https://github.com/neetjn/vue-localize",
   "ignore": [
     "**/.*",
     "node_modules",

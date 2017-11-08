@@ -1,11 +1,11 @@
-import $locale from './locale.js'
-import localize from './localize.js'
+import { directive } from './localize.js'
+import { locale } from './locale.js'
 
-export default function (Vue, options) {
+export function install (Vue, options) {
+  Vue.directive('localize', directive)
   Vue.mixin({
     methods: {
-      $locale
+      $locale: locale
     }
   })  // # define global mixin
-  Vue.directive('localize', localize)
 }
