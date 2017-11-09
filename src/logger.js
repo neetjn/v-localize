@@ -14,6 +14,15 @@ export class Logger {
       }
     })
   }
+  
+  /**
+   * Format log for logstore
+   * @param {string} message - message to log.
+   * @param {int} timestamp - timestamp for log.
+   */
+  _format(message, timestamp) {
+    return `[${new Date(timestamp).toString()}]: (v-localize) "${message}"`
+  }
 
   /**
    * Fetch logs, allows for filtering by type.
@@ -29,11 +38,11 @@ export class Logger {
    * @param {string} message - Message to log.
    */
   log (message) {
-    const time = this.time
+    const timestamp = this.time
     if (this.debugging) {
-      console.log(`[${new Date(time).toString()}]: (v-localize) "${message}"`)
+      console.log(this._format(message, timestamp))
     }
-    this.logs.push({ type: 'general', message, time })
+    this.logs.push({ type: 'general', message, timestamp })
   }
 
   /**
@@ -41,11 +50,11 @@ export class Logger {
    * @param {string} message - Message to log.
    */
   warn (message) {
-    const time = this.time
+    const timestamp = this.time
     if (this.debugging) {
-      console.warn(`[${new Date(time).toString()}]: (v-localize) "${message}"`)
+      console.warn(this._format(message, timestamp))
     }
-    this.logs.push({ type: 'warning', message, time })
+    this.logs.push({ type: 'warning', message, timestamp })
   }
 
   /**
@@ -53,11 +62,11 @@ export class Logger {
    * @param {string} message - Message to log.
    */
   error (message) {
-    const time = this.time
+    const timestamp = this.time
     if (this.debugging) {
-      console.error(`[${new Date(time).toString()}]: (v-localize) "${message}"`)
+      console.error(this._format(message, timestamp))
     }
-    this.logs.push({ type: 'critical', message, time })
+    this.logs.push({ type: 'critical', message, timestamp })
   }
 
 }
