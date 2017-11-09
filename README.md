@@ -80,7 +80,7 @@ new Vue({
 });
 ```
 
-Once your Vue app has been instantiated, the language can be changed by calling `$locale(args*)` from your Vue instance. This will set your desired localization in local storage and reload your current window.
+Once your Vue app has been instantiated, the language can be changed by calling `$locale(args*)` from your Vue instance or virtual node. This will set your desired localization in local storage and handle your decision appropriately based on your mode.
 
 ```html
 <button @click="$locale('en-US')">English</button>
