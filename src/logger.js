@@ -14,13 +14,13 @@ export class Logger {
       }
     })
   }
-  
+
   /**
    * Format log for logstore
    * @param {string} message - message to log.
    * @param {int} timestamp - timestamp for log.
    */
-  _format(message, timestamp) {
+  _format (message, timestamp) {
     return `[${new Date(timestamp).toString()}]: (v-localize) "${message}"`
   }
 
