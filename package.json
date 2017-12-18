@@ -30,7 +30,7 @@
   "bugs": {
     "url": "https://github.com/neetjn/v-localize/issues"
   },
-  "homepage": "https://github.com/neetjn/v-localize#readme",
+  "homepage": "https://neetjn.github.io/v-localize/",
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-eslint": "^7.2.3",
