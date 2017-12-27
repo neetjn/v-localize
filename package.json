@@ -1,6 +1,6 @@
 {
   "name": "v-localize",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "description": "Simple localization plugin for the amazing Vue.js.",
   "main": "dist/v-localize.js",
   "directories": {
@@ -30,7 +30,7 @@
   "bugs": {
     "url": "https://github.com/neetjn/v-localize/issues"
   },
-  "homepage": "https://github.com/neetjn/v-localize#readme",
+  "homepage": "https://neetjn.github.io/v-localize/",
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-eslint": "^7.2.3",

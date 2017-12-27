@@ -1,12 +1,7 @@
-<a target='_blank' rel='nofollow' href='https://app.codesponsor.io/link/ymhxqZ47jLBFuVrU2iywqLGC/neetjn/v-localize'>
-  <img alt='Sponsor' width='888' height='68' src='https://app.codesponsor.io/embed/ymhxqZ47jLBFuVrU2iywqLGC/neetjn/v-localize.svg' />
-</a>
-
 # **V-Localize**
 
 [![build](https://travis-ci.org/neetjn/v-localize.svg?branch=master)](https://travis-ci.org/neetjn/v-localize/)
 [![npm version](https://badge.fury.io/js/v-localize.svg)](https://badge.fury.io/js/v-localize)
-[![Code Health](https://landscape.io/github/neetjn/v-localize/master/landscape.svg?style=flat)](https://landscape.io/github/neetjn/v-localize/master)
 [![Join the chat at https://gitter.im/v-localize/Lobby](https://badges.gitter.im/v-localize/Lobby.svg)](https://gitter.im/v-localize/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 [![NPM](https://nodei.co/npm/v-localize.png)](https://nodei.co/npm/v-localize/)
@@ -80,7 +75,7 @@ new Vue({
 });
 ```
 
-Once your Vue app has been instantiated, the language can be changed by calling `$locale(args*)` from your Vue instance. This will set your desired localization in local storage and reload your current window.
+Once your Vue app has been instantiated, the language can be changed by calling `$locale(args*)` from your Vue instance or virtual node. This will set your desired localization in local storage and handle your decision appropriately based on your mode.
 
 ```html
 <button @click="$locale('en-US')">English</button>
