@@ -3,6 +3,7 @@
  * @param {string} lang - Language to change to.
  */
 export function locale (lang) {
+  const vue = this.$root.$options._base
   const localize = this.$root.$options.localize
 
   if (lang) {
@@ -20,7 +21,7 @@ export function locale (lang) {
         case 'hot':
           window.localStorage.setItem('localization', lang)  // # update session localization
           localize.linked.forEach(function (e) {
-            Vue.directive('localize').bind(e.el, e.binding, e.vm)  // # update all directive bindings
+            vue.directive('localize').bind(e.el, e.binding, e.vm)  // # update all directive bindings
           })
           document.querySelector('html').setAttribute('lang', lang)  // # change document lang
           break
