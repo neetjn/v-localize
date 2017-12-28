@@ -1,5 +1,7 @@
 # **V-Localize**
 
+[![npm](https://img.shields.io/npm/dm/v-localize.svg)](https://www.npmjs.com/package/v-localize)
+
 [![build](https://travis-ci.org/neetjn/v-localize.svg?branch=master)](https://travis-ci.org/neetjn/v-localize/)
 [![npm version](https://badge.fury.io/js/v-localize.svg)](https://badge.fury.io/js/v-localize)
 [![Join the chat at https://gitter.im/v-localize/Lobby](https://badges.gitter.im/v-localize/Lobby.svg)](https://gitter.im/v-localize/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
