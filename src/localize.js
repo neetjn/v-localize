@@ -31,7 +31,7 @@ export const directive = {
       })  // # store localized properties for updates
     }
     try {
-      var localization = localize.localizations[binding.value.l || localize.locale]
+      var localization = localize.localizations[binding.value.t || localize.locale]
       binding.value.i.match(localize.$constants.regex.item).forEach(function (key) {
         localization = localization[key]
         if (localization === undefined) {
@@ -59,7 +59,7 @@ export const directive = {
       } else el.setAttribute(binding.value.attr, localization)  // # localize attribute
     } catch (e) {
       localize.$logger.warn(
-        `Could not find localization for "${binding.value.i}" in ${localize.locale} languages`)
+        `Could not find localization for "${binding.value.i}" in ${binding.value.t || localize.locale} language`)
       localize.$logger.error(e)
       if (!binding.value.attr) {
         el.innerHTML = localize.fallback

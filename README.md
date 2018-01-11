@@ -87,7 +87,7 @@ Once your Vue app has been instantiated, the language can be changed by calling 
 You can specify your localizations like so:
 ```html
 <!-- Will add a localized title to this element targeting en-US -->
-<h1 v-localize="{i: 'header.title', l: 'en-US', attr: 'title'}">Hello World</h1>
+<h1 v-localize="{i: 'header.title', t: 'en-US', attr: 'title'}">Hello World</h1>
 <!-- Will replace this element's text with localized item -->
 <h2 v-localize="{i: 'header.title'}"></h2>
 ```
@@ -103,7 +103,7 @@ For fetching a specific locale item programatically within a component method:
 
 ```js
 export default {
-  name: 'myComponent':
+  name: 'myComponent',
   methods: {
     getTitle() {
       window.alert(this.$locale({i: 'title'}))
