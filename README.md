@@ -103,7 +103,7 @@ For fetching a specific locale item programatically within a component method:
 
 ```js
 export default {
-  name: 'myComponent',
+  name: 'some-component',
   methods: {
     getTitle() {
       window.alert(this.$locale({i: 'title'}))
