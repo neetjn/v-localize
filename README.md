@@ -85,6 +85,7 @@ Once your Vue app has been instantiated, the language can be changed by calling 
 ```
 
 You can specify your localizations like so:
+
 ```html
 <!-- Will add a localized title to this element targeting en-US -->
 <h1 v-localize="{i: 'header.title', t: 'en-US', attr: 'title'}">Hello World</h1>
