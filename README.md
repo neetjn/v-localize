@@ -80,22 +80,42 @@ new Vue({
 Once your Vue app has been instantiated, the language can be changed by calling `$locale(args*)` from your Vue instance or virtual node. This will set your desired localization in local storage and handle your decision appropriately based on your mode.
 
 ```html
-<button @click="$locale('en-US')">English</button>
-<button @click="$locale('es-SP')">Spanish</button>
+<button @click="$locale({l: 'en-US'})">English</button>
+<button @click="$locale({l: 'es-SP'})">Spanish</button>
 ```
 
-You can specify your localizations like so,
+You can specify your localizations like so:
+
 ```html
-<!-- Will add a localized title to this element targeting en-US -->
-<h1 v-localize="{item: 'header.title', locale: 'en-US', attr: 'title'}">Hello World</h1>
-<!-- Will replace this element's text with localized item -->
-<h2 v-localize="{item: 'header.title'}"></h2>
+<!-- add a localized title to this element targeting en-US -->
+<h1 v-localize="{i: 'header.title', t: 'en-US', attr: 'title'}">Hello World</h1>
+<!-- replace this element's text with localized item -->
+<h2 v-localize="{i: 'header.title'}"></h2>
 ```
+
 Alternatively, you can get your current localization by calling `$locale()` without specifying a language.
+
 ```html
-<!-- Will fetch current locale -->
+<!-- fetch current locale -->
 <h1>Locale: {{ $locale() }}</h1>
 ```
+
+For fetching a specific locale item programatically within a component method:
+
+```js
+export default {
+  name: 'some-component',
+  methods: {
+    getTitle() {
+      window.alert(this.$locale({i: 'title'}))
+    },
+    getSpanishTitle() {
+      window.alert(this.$locale({i: 'title', t: 'sp-ES'}))
+    }
+  }
+}
+```
+
 
 ### Configuration
 
