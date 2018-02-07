@@ -1,4 +1,4 @@
-{ versions } = require '../package'
+{ version } = require '../package.json'
 
 module.exports =
   version: version,

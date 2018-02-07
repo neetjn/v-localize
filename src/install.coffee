@@ -1,5 +1,5 @@
-{ directive } = require './localize'
-{ locale } = require './locale'
+{ directive } = require './localize.coffee'
+{ locale } = require './locale.coffee'
 
 module.exports =
   install: (Vue, options) ->

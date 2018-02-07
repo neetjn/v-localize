@@ -1,5 +1,5 @@
-{ constants } = require './constants'
-{ Logger } = require './logger'
+{ constants } = require './constants.coffee'
+{ Logger } = require './logger.coffee'
 
 module.exports =
   ###
