@@ -1,0 +1,39 @@
+{ constants } = require './constants'
+{ Logger } = require './logger'
+
+module.exports =
+  ###
+   * v-localize configuration builder
+   * @param {object} options - v-localize options.
+  ###
+  config: (options) ->
+    localize = Object.assign({ }, options)
+    localize.$constants = constants
+    localize.debug = localize.debug or false
+    localize.$logger = new Logger(localize.debug)
+    localize.nodes = []
+    # integrity checks
+    available = localize.available.forEach (locale) ->
+      locale = locale.locale or locale
+    # for locales with localize
+    available.forEach (locale) ->
+      if !localize.localizations[locale]
+        throw Error("Localizations for locale \"#{ locale }\" not found.")
+    localize.webStore = localize.webStore and typeof(window) != 'undefined'
+    if localize.webStore
+      webCached = window.localStorage.getItem('localization')
+      if webCached and available.find(locale => locale == webCached)
+        localize.locale = webCached
+      else
+        # default to default locale
+        localize.locale = localize.default
+        # commit localization to local storage
+        window.localStorage.setItem('localization', localize.locale)
+    else
+      # default to default locale
+      localize.locale = localize.default
+    if typeof(document) != 'undefined'
+      # change document lang
+      document.querySelector('html').setAttribute('lang', localize.locale)
+    localize.fallback = localize.fallback or 'N/A'
+    return localize
