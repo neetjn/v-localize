@@ -8,7 +8,7 @@ module.exports =
     localize = @root.$options.localize
     if opts
       if opts.l
-        if localize.available.find (e) -> e.locale or e == opts.l
+        if localize.available.find((e) -> e.locale or e == opts.l)
           localize.locale = opts.l # update our locale
           if localize.webStore
             # update session localization
@@ -20,15 +20,16 @@ module.exports =
             # change document lang
             document.querySelector('html').setAttribute('lang', opts.l)
         else
-          localize.$logger.error("Locale \"#{ opts.lang }\" not defined in configuration.")
+          localize.$logger.error(
+            "Locale \"#{ opts.lang }\" not defined in configuration.")
       else if opts.i
         # get localization tree
-        tree = localize.localizations[opts.t || localize.locale]
+        localizations = localize.localizations[opts.t || localize.locale]
         branches = opts.i.match(localize.$constants.regex.item)
-        #
+        # not using forEach for hard escape
         for i in branches
           branch = branches[i]
-          localization = localization[key]
+          localization = localizations[branch]
           if (localization == undefined)
             throw new Error("Cannot read property for \"#{ branch }\".")
         return localization

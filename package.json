@@ -22,7 +22,8 @@
     "localize",
     "javascript",
     "i18n",
-    "internationalization"
+    "internationalization",
+    "coffeescript"
   ],
   "author": "John Nolette",
   "license": "MIT",
