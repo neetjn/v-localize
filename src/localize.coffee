@@ -37,10 +37,11 @@ module.exports =
             throw new Error("Cannot read property for \"#{ branch }\".")
         if binding.value.attr
           el.setAttribute(binding.value.attr, localization) # localize attribute
-        else binding.value.attr
+        else
           el.innerHTML = localization
           # find options for locale if exists
-          options = localize.available.find(loc -> loc.locale == localize.locale)
+          options = localize.available.find(
+            loc -> loc.locale == localize.locale)
           if options
             if options.orientation
               # change element display orientation
@@ -55,8 +56,10 @@ module.exports =
 
       catch e
 
+        # coffeelint: disable=max_line_length
         localize.$logger.warn(
           "Could not find localization for \"#{ binding.value.i }\" in #{binding.value.t || localize.locale}")
+        # coffeelint: enable=max_line_length
         localize.$logger.error(e)
         if binding.value.attr
           el.setAttribute(binding.value.attr, localize.fallback)
