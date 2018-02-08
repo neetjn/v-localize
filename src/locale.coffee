@@ -24,12 +24,12 @@ module.exports =
             "Locale \"#{ opts.lang }\" not defined in configuration.")
       else if opts.i
         # get localization tree
-        localizations = localize.localizations[opts.t || localize.locale]
+        localization = localize.localizations[opts.t || localize.locale]
         branches = opts.i.match(localize.$constants.regex.item)
         # not using forEach for hard escape
         for i of branches
           branch = branches[i]
-          localization = localizations[branch]
+          localization = localization[branch]
           if (localization == undefined)
             throw new Error("Cannot read property for \"#{ branch }\".")
         return localization

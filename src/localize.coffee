@@ -27,12 +27,14 @@ module.exports =
       try
 
         # get localization tree
-        localizations = localize.localizations[binding.value.t || localize.locale]
+        # coffeelint: disable=max_line_length
+        localization = localize.localizations[binding.value.t || localize.locale]
+        # coffeelint: enable=max_line_length
         branches = binding.value.i.match(localize.$constants.regex.item)
         # not using forEach for hard escape
         for i of branches
           branch = branches[i]
-          localization = localizations[branch]
+          localization = localization[branch]
           if (localization == undefined)
             throw new Error("Cannot read property for \"#{ branch }\".")
         if binding.value.attr

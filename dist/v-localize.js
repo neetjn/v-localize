@@ -153,7 +153,7 @@ module.exports = {
      * @param {vnode} vnode - The virtual node produced by Vue’s compiler.
      */
     bind: function bind(el, binding, vm) {
-      var branch, branches, e, i, localization, localizations, localize, options;
+      var branch, branches, e, i, localization, localize, options;
       localize = vm.context.$root.$options.localize;
       if (!localize.nodes.find(function (e) {
         return e.el === el;
@@ -167,12 +167,14 @@ module.exports = {
       }
       try {
         // get localization tree
-        localizations = localize.localizations[binding.value.t || localize.locale];
+        // coffeelint: disable=max_line_length
+        localization = localize.localizations[binding.value.t || localize.locale];
+        // coffeelint: enable=max_line_length
         branches = binding.value.i.match(localize.$constants.regex.item);
         // not using forEach for hard escape
         for (i in branches) {
           branch = branches[i];
-          localization = localizations[branch];
+          localization = localization[branch];
           if (localization === void 0) {
             throw new Error('Cannot read property for "' + branch + '".');
           }
@@ -233,7 +235,7 @@ module.exports = {
   locale: function locale() {
     var opts = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
 
-    var branch, branches, i, localization, localizations, localize, vue;
+    var branch, branches, i, localization, localize, vue;
     vue = this.$root.$options._base;
     localize = this.$root.$options.localize;
     if (opts) {
@@ -259,12 +261,12 @@ module.exports = {
         }
       } else if (opts.i) {
         // get localization tree
-        localizations = localize.localizations[opts.t || localize.locale];
+        localization = localize.localizations[opts.t || localize.locale];
         branches = opts.i.match(localize.$constants.regex.item);
         // not using forEach for hard escape
         for (i in branches) {
           branch = branches[i];
-          localization = localizations[branch];
+          localization = localization[branch];
           if (localization === void 0) {
             throw new Error('Cannot read property for "' + branch + '".');
           }
