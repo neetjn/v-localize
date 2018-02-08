@@ -1,17 +1,16 @@
 {
   "name": "v-localize",
-  "version": "1.1.7",
+  "version": "1.1.8",
   "description": "Simple localization plugin for the amazing Vue.js.",
   "main": "dist/v-localize.js",
   "directories": {
     "example": "example"
   },
   "scripts": {
-    "build": "node_modules/.bin/cross-env NODE_ENV=production node_modules/.bin/webpack --config build/webpack.conf.js",
-    "build:dev": "node_modules/.bin/webpack --config build/webpack.conf.js",
-    "lint": "node_modules/.bin/eslint src/**.js",
-    "test:unit": "node_modules/.bin/karma start test/karma.conf.js",
-    "test": "npm run lint && npm run test:unit"
+    "bundle": "node_modules/.bin/webpack --config webpack.config.js",
+    "lint": "node_modules/.bin/coffeelint -f coffee-lint.json src/**.coffee",
+    "test": "node_modules/.bin/karma start test/karma.conf.js",
+    "build": "npm run lint && npm run bundle && npm run test"
   },
   "repository": {
     "type": "git",
@@ -23,7 +22,8 @@
     "localize",
     "javascript",
     "i18n",
-    "internationalization"
+    "internationalization",
+    "coffeescript"
   ],
   "author": "John Nolette",
   "license": "MIT",
@@ -32,25 +32,21 @@
   },
   "homepage": "https://neetjn.github.io/v-localize/",
   "devDependencies": {
+    "babel": "^6.23.0",
     "babel-core": "^6.26.0",
-    "babel-eslint": "^7.2.3",
+    "babel-eslint": "^8.2.1",
     "babel-loader": "^7.1.2",
-    "babel-plugin-add-module-exports": "^0.2.1",
     "babel-preset-env": "^1.6.1",
-    "babel-preset-flow-vue": "^1.0.0",
-    "babel-register": "^6.22.0",
-    "cross-env": "^5.0.1",
+    "coffee-loader": "^0.9.0",
+    "coffeelint": "^2.0.7",
+    "coffeescript": "^2.2.0",
     "electron": "^1.7.11",
-    "eslint": "^3.14.1",
-    "eslint-loader": "^1.6.1",
-    "eslint-plugin-flowtype": "^2.30.0",
-    "eslint-plugin-vue-libs": "^1.2.0",
-    "flow-bin": "^0.38.0",
     "jasmine": "2.5.2",
     "karma": "^1.7.1",
     "karma-electron": "^5.2.1",
     "karma-jasmine": "^1.1.0",
     "vue": "^2.5.0",
     "webpack": "^3.8.1"
-  }
+  },
+  "dependencies": {}
 }

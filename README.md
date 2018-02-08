@@ -43,7 +43,6 @@ Vue.use(Localize);
 
 let localize = Localize.config({
   default: 'en-US',
-  mode: 'hot',
   available: ['en-US', 'es-SP', {
     locale: 'ar-MS',
     orientation: 'rtl',
@@ -77,7 +76,7 @@ new Vue({
 });
 ```
 
-Once your Vue app has been instantiated, the language can be changed by calling `$locale(args*)` from your Vue instance or virtual node. This will set your desired localization in local storage and handle your decision appropriately based on your mode.
+Once your Vue app has been instantiated, the language can be changed by calling `$locale(args*)` from your Vue instance or virtual node.
 
 ```html
 <button @click="$locale({l: 'en-US'})">English</button>
@@ -123,8 +122,6 @@ The plugin takes 5 options,
 
 > **`debug`**: If enabled, will spit warnings and errors to console.
 
-> **`mode`**: Will default to `stale`, which will commit changes to local storage -- a window reload is necessary to view changes. To automatically reload the window, set the mode to `reload`. May be set to `hot` for real-time updates to binded directives.
-
 > **`default`**: Default language key to target if not set already.
 
 > **`available`**: List of available localizations, can optionally specify locale options. ex;
@@ -136,6 +133,8 @@ The plugin takes 5 options,
   ```
 
 > **`fallback`**: Default text to show if localization for current language not found. If not specified, will default to `'N/A'`.
+
+> **`webStore`**: If the Vue instance is accessed within a web context and option `webStore` is enabled, plugin will store the locale in local storage for the next visit.
 
 > **`localizations`**: JSON object for localizations.
    ```js

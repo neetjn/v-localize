@@ -1,1 +1,504 @@
-!function(e,t){"object"==typeof exports&&"object"==typeof module?module.exports=t():"function"==typeof define&&define.amd?define("Localize",[],t):"object"==typeof exports?exports.Localize=t():e.Localize=t()}(this,function(){return function(e){function t(n){if(o[n])return o[n].exports;var i=o[n]={i:n,l:!1,exports:{}};return e[n].call(i.exports,i,i.exports,t),i.l=!0,i.exports}var o={};return t.m=e,t.c=o,t.d=function(e,o,n){t.o(e,o)||Object.defineProperty(e,o,{configurable:!1,enumerable:!0,get:n})},t.n=function(e){var o=e&&e.__esModule?function(){return e.default}:function(){return e};return t.d(o,"a",o),o},t.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},t.p="dist/",t(t.s=0)}([function(e,t,o){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var n=o(1),i=o(4);t.default={install:n.install,config:i.config},e.exports=t.default},function(e,t,o){"use strict";function n(e,t){e.directive("localize",i.directive),e.mixin({methods:{$locale:l.locale}})}Object.defineProperty(t,"__esModule",{value:!0}),t.install=n;var i=o(2),l=o(3)},function(e,t,o){"use strict";Object.defineProperty(t,"__esModule",{value:!0});t.directive={unbind:function(e,t,o){var n=o.context.$root.$options.localize,i=n.linked.find(function(t){return t.el===e});"hot"===n.mode&&-1!==i&&n.linked.splice(n.linked.indexOf(i),1)},bind:function(e,t,o){var n=o.context.$root.$options.localize;"hot"!==n.mode||n.linked.find(function(t){return t.el===e})||n.linked.push({el:e,binding:t,vm:o});try{var i=n.localizations[t.value.t||n.locale];if(t.value.i.match(n.$constants.regex.item).forEach(function(e){if(void 0===(i=i[e]))throw new Error('Cannot read property for "'+e+'".')}),t.value.attr)e.setAttribute(t.value.attr,i);else{e.innerHTML=i;var l=n.available.find(function(e){return e.locale===n.locale});l&&(l.orientation&&e.setAttribute("dir",l.orientation),l.font&&(l.font.family&&(e.style.fontFamily=l.font.family),l.font.size&&(e.style.fontSize=l.font.size)))}}catch(o){n.$logger.warn('Could not find localization for "'+t.value.i+'" in '+(t.value.t||n.locale)+" language"),n.$logger.error(o),t.value.attr?e.setAttribute(t.value.attr,n.fallback):e.innerHTML=n.fallback}}}},function(e,t,o){"use strict";function n(){var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:null,t=this.$root.$options._base,o=this.$root.$options.localize;if(!e)return o.locale;if(e.l)if(o.available.find(function(t){return t.locale||t===e.l}))switch(o.locale=e.l,o.mode){case"stale":window.localStorage.setItem("localization",e.l),o.$logger.log("Local storage updated, waiting for reload.");break;case"reload":window.localStorage.setItem("localization",e.l),window.location.reload();break;case"hot":window.localStorage.setItem("localization",e.l),o.linked.forEach(function(e){t.directive("localize").bind(e.el,e.binding,e.vm)}),document.querySelector("html").setAttribute("lang",e.l);break;default:o.$logger.error("Mode could not be determined")}else o.$logger.error('Locale "'+e.lang+'" not defined in configuration.');else if(e.i){var n=o.localizations[e.t||o.locale];return e.i.match(o.$constants.regex.item).forEach(function(e){if(void 0===(n=n[e]))throw new Error('Cannot read property for "'+e+'".')}),n}}Object.defineProperty(t,"__esModule",{value:!0}),t.locale=n},function(e,t,o){"use strict";function n(e){var t=Object.assign({},e);if(t.$constants=i.constants,void 0===t.debug&&(t.debug=!1),t.$logger=new l.Logger(t.debug),void 0!==t.mode&&-1!==["hot","stale"].indexOf(t.mode)||(t.mode="stale"),"hot"===t.mode&&(t.linked=[]),t.available.forEach(function(e){e=e.locale||e,t.localizations[e]||(t.$logger,console.warn("v-localize:\n  Localizations for locale "+e+" not found."))}),window.localStorage.getItem("localization")){-1===t.available.map(function(e){return e.locale||e}).indexOf(window.localStorage.getItem("localization"))?t.locale=t.default:t.locale=window.localStorage.getItem("localization")}else t.locale=t.default;return window.localStorage.setItem("localization",t.locale),document.querySelector("html").setAttribute("lang",t.locale),t.fallback||(t.fallback="N/A"),t}Object.defineProperty(t,"__esModule",{value:!0}),t.config=n;var i=o(5),l=o(7)},function(e,t,o){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.constants=void 0;var n=o(6);t.constants={version:n.version,regex:{item:/([a-zA-Z$]{1,}).*?/g}}},function(e,t){e.exports={name:"v-localize",version:"1.1.7",description:"Simple localization plugin for the amazing Vue.js.",main:"dist/v-localize.js",directories:{example:"example"},scripts:{build:"node_modules/.bin/cross-env NODE_ENV=production node_modules/.bin/webpack --config build/webpack.conf.js","build:dev":"node_modules/.bin/webpack --config build/webpack.conf.js",lint:"node_modules/.bin/eslint src/**.js","test:unit":"node_modules/.bin/karma start test/karma.conf.js",test:"npm run lint && npm run test:unit"},repository:{type:"git",url:"git+https://github.com/neetjn/v-localize.git"},keywords:["vue","vue.js","localize","javascript","i18n","internationalization"],author:"John Nolette",license:"MIT",bugs:{url:"https://github.com/neetjn/v-localize/issues"},homepage:"https://neetjn.github.io/v-localize/",devDependencies:{"babel-core":"^6.26.0","babel-eslint":"^7.2.3","babel-loader":"^7.1.2","babel-plugin-add-module-exports":"^0.2.1","babel-preset-env":"^1.6.1","babel-preset-flow-vue":"^1.0.0","babel-register":"^6.22.0","cross-env":"^5.0.1",electron:"^1.7.9",eslint:"^3.14.1","eslint-loader":"^1.6.1","eslint-plugin-flowtype":"^2.30.0","eslint-plugin-vue-libs":"^1.2.0","flow-bin":"^0.38.0",jasmine:"2.5.2",karma:"^1.7.1","karma-electron":"^5.2.1","karma-jasmine":"^1.1.0",vue:"^2.5.0",webpack:"^3.8.1"}}},function(e,t,o){"use strict";function n(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}Object.defineProperty(t,"__esModule",{value:!0});var i=function(){function e(e,t){for(var o=0;o<t.length;o++){var n=t[o];n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(e,n.key,n)}}return function(t,o,n){return o&&e(t.prototype,o),n&&e(t,n),t}}();t.Logger=function(){function e(t){n(this,e),this.debugging=t,this.logs=[],Object.defineProperty(this,"time",{get:function(){return(new Date).getTime()}})}return i(e,[{key:"_format",value:function(e,t){return"["+new Date(t).toString()+']: (v-localize) "'+e+'"'}},{key:"$get",value:function(e){return this.logs.filter(function(t){return!e||t.type===e})}},{key:"log",value:function(e){var t=this.time;this.debugging&&console.log(this._format(e,t)),this.logs.push({type:"general",message:e,timestamp:t})}},{key:"warn",value:function(e){var t=this.time;this.debugging&&console.warn(this._format(e,t)),this.logs.push({type:"warning",message:e,timestamp:t})}},{key:"error",value:function(e){var t=this.time;this.debugging&&console.error(this._format(e,t)),this.logs.push({type:"critical",message:e,timestamp:t})}}]),e}()}])});
+(function webpackUniversalModuleDefinition(root, factory) {
+	if(typeof exports === 'object' && typeof module === 'object')
+		module.exports = factory();
+	else if(typeof define === 'function' && define.amd)
+		define("Localize", [], factory);
+	else if(typeof exports === 'object')
+		exports["Localize"] = factory();
+	else
+		root["Localize"] = factory();
+})(this, function() {
+return /******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, {
+/******/ 				configurable: false,
+/******/ 				enumerable: true,
+/******/ 				get: getter
+/******/ 			});
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "dist/";
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ })
+/************************************************************************/
+/******/ ([
+/* 0 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var config, install;
+
+var _require = __webpack_require__(1);
+
+install = _require.install;
+
+var _require2 = __webpack_require__(4);
+
+config = _require2.config;
+
+
+module.exports = {
+  install: install,
+  config: config
+};
+
+/***/ }),
+/* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var directive, locale;
+
+var _require = __webpack_require__(2);
+
+directive = _require.directive;
+
+var _require2 = __webpack_require__(3);
+
+locale = _require2.locale;
+
+
+module.exports = {
+  install: function install(Vue, options) {
+    Vue.directive('localize', directive);
+    return Vue.mixin({ // define global mixin
+      methods: {
+        $locale: locale
+      }
+    });
+  }
+};
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = {
+  directive: {
+    /*
+     * @param {element} el - The element the directive is bound to.
+     * @param {object} binding - Vue binding properties.
+     * @param {vnode} vnode - The virtual node produced by Vue’s compiler.
+     */
+    unbind: function unbind(el, binding, vnode) {
+      var localize;
+      localize = vnode.context.$root.$options.localize;
+      // remove node from store
+      return localize.nodes.splice(localize.nodes.indexOf(localize.nodes.find(function (e) {
+        return e.el === el;
+      })), 1);
+    },
+    /*
+     * @param {element} el - The element the directive is bound to.
+     * @param {object} binding - Vue binding properties.
+     * @param {vnode} vnode - The virtual node produced by Vue’s compiler.
+     */
+    bind: function bind(el, binding, vm) {
+      var branch, branches, e, i, localization, localize, options;
+      localize = vm.context.$root.$options.localize;
+      if (!localize.nodes.find(function (e) {
+        return e.el === el;
+      })) {
+        // store localized node for updates
+        localize.nodes.push({
+          el: el,
+          binding: binding,
+          vm: vm
+        });
+      }
+      try {
+        // get localization tree
+        // coffeelint: disable=max_line_length
+        localization = localize.localizations[binding.value.t || localize.locale];
+        // coffeelint: enable=max_line_length
+        branches = binding.value.i.match(localize.$constants.regex.item);
+        // not using forEach for hard escape
+        for (i in branches) {
+          branch = branches[i];
+          localization = localization[branch];
+          if (localization === void 0) {
+            throw new Error('Cannot read property for "' + branch + '".');
+          }
+        }
+        if (binding.value.attr) {
+          return el.setAttribute(binding.value.attr, localization); // localize attribute
+        } else {
+          el.innerHTML = localization;
+          // find options for locale if exists
+          options = localize.available.find(function (loc) {
+            return loc.locale === localize.locale;
+          });
+          if (options) {
+            if (options.orientation) {
+              // change element display orientation
+              el.setAttribute('dir', options.orientation);
+            }
+            if (options.font) {
+              if (options.font.family) {
+                // https://www.w3schools.com/jsref/prop_style_fontfamily.asp
+                el.style.fontFamily = options.font.family;
+              }
+              if (options.font.size) {
+                // https://www.w3schools.com/jsref/prop_style_fontsize.asp
+                return el.style.fontSize = options.font.size;
+              }
+            }
+          }
+        }
+      } catch (error) {
+        e = error;
+        // coffeelint: disable=max_line_length
+        localize.$logger.warn('Could not find localization for "' + binding.value.i + '" in ' + (binding.value.t || localize.locale));
+        // coffeelint: enable=max_line_length
+        localize.$logger.error(e);
+        if (binding.value.attr) {
+          return el.setAttribute(binding.value.attr, localize.fallback);
+        } else {
+          return el.innerHTML = localize.fallback;
+        }
+      }
+    }
+  }
+};
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = {
+  /*
+   * v-localize $locale(args*) mixin
+   * @param {string} lang - Language to change to.
+   */
+  locale: function locale() {
+    var opts = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+
+    var branch, branches, i, localization, localize, vue;
+    vue = this.$root.$options._base;
+    localize = this.$root.$options.localize;
+    if (opts) {
+      if (opts.l) {
+        if (localize.available.find(function (e) {
+          return e.locale || e === opts.l;
+        })) {
+          localize.locale = opts.l; // update our locale
+          if (localize.webStore) {
+            // update session localization
+            window.localStorage.setItem('localization', opts.l);
+          }
+          localize.nodes.forEach(function (e) {
+            // update all directive bindings
+            return vue.directive('localize').bind(e.el, e.binding, e.vm);
+          });
+          if (typeof document !== 'undefined') {
+            // change document lang
+            return document.querySelector('html').setAttribute('lang', opts.l);
+          }
+        } else {
+          return localize.$logger.error('Locale "' + opts.lang + '" not defined in configuration.');
+        }
+      } else if (opts.i) {
+        // get localization tree
+        localization = localize.localizations[opts.t || localize.locale];
+        branches = opts.i.match(localize.$constants.regex.item);
+        // not using forEach for hard escape
+        for (i in branches) {
+          branch = branches[i];
+          localization = localization[branch];
+          if (localization === void 0) {
+            throw new Error('Cannot read property for "' + branch + '".');
+          }
+        }
+        return localization;
+      }
+    } else {
+      return localize.locale;
+    }
+  }
+};
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var Logger, constants;
+
+var _require = __webpack_require__(5);
+
+constants = _require.constants;
+
+var _require2 = __webpack_require__(7);
+
+Logger = _require2.Logger;
+
+
+module.exports = {
+  /*
+   * v-localize configuration builder
+   * @param {object} options - v-localize options.
+   */
+  config: function config(options) {
+    var available, localize, webCached;
+    localize = Object.assign({}, options);
+    localize.$constants = constants;
+    localize.debug = localize.debug || false;
+    localize.$logger = new Logger(localize.debug);
+    localize.nodes = [];
+    // integrity checks
+    available = localize.available.map(function (locale) {
+      return locale.locale || locale;
+    });
+    // for locales with localize
+    available.forEach(function (locale) {
+      if (!localize.localizations[locale]) {
+        throw Error('Localizations for locale "' + locale + '" not found.');
+      }
+    });
+    localize.webStore = localize.webStore && typeof window !== 'undefined';
+    if (localize.webStore) {
+      webCached = window.localStorage.getItem('localization');
+      if (webCached && available.find(locale(function () {
+        return locale === webCached;
+      }))) {
+        localize.locale = webCached;
+      } else {
+        // default to default locale
+        localize.locale = localize.default;
+        // commit localization to local storage
+        window.localStorage.setItem('localization', localize.locale);
+      }
+    } else {
+      // default to default locale
+      localize.locale = localize.default;
+    }
+    if (typeof document !== 'undefined') {
+      // change document lang
+      document.querySelector('html').setAttribute('lang', localize.locale);
+    }
+    localize.fallback = localize.fallback || 'N/A';
+    return localize;
+  }
+};
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var version;
+
+var _require = __webpack_require__(6);
+
+version = _require.version;
+
+
+module.exports = {
+  constants: {
+    version: version,
+    regex: {
+      // regex for searching for locale
+      item: /([a-zA-Z$]{1,}).*?/g
+    }
+  }
+};
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports) {
+
+module.exports = {"name":"v-localize","version":"1.1.8","description":"Simple localization plugin for the amazing Vue.js.","main":"dist/v-localize.js","directories":{"example":"example"},"scripts":{"bundle":"node_modules/.bin/webpack --config webpack.config.js","lint":"node_modules/.bin/coffeelint -f coffee-lint.json src/**.coffee","test":"node_modules/.bin/karma start test/karma.conf.js","build":"npm run lint && npm run bundle && npm run test"},"repository":{"type":"git","url":"git+https://github.com/neetjn/v-localize.git"},"keywords":["vue","vue.js","localize","javascript","i18n","internationalization","coffeescript"],"author":"John Nolette","license":"MIT","bugs":{"url":"https://github.com/neetjn/v-localize/issues"},"homepage":"https://neetjn.github.io/v-localize/","devDependencies":{"babel":"^6.23.0","babel-core":"^6.26.0","babel-eslint":"^8.2.1","babel-loader":"^7.1.2","babel-preset-env":"^1.6.1","coffee-loader":"^0.9.0","coffeelint":"^2.0.7","coffeescript":"^2.2.0","electron":"^1.7.11","jasmine":"2.5.2","karma":"^1.7.1","karma-electron":"^5.2.1","karma-jasmine":"^1.1.0","vue":"^2.5.0","webpack":"^3.8.1"},"dependencies":{}}
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var Logger;
+
+Logger = function () {
+  /*
+   * Logging interface for v-localize
+   * @param {bool} debugging - Debug to console.
+   */
+  function Logger(debugging) {
+    _classCallCheck(this, Logger);
+
+    this.debugging = debugging;
+    this.logs = [];
+    Object.defineProperty(this, 'time', {
+      get: function get() {
+        return new Date().getTime();
+      }
+    });
+  }
+
+  /*
+   * Format log for logstore
+   * @param {string} message - message to log.
+   * @param {int} timestamp - timestamp for log.
+   */
+
+
+  _createClass(Logger, [{
+    key: '_format',
+    value: function _format(message, timestamp) {
+      return '[' + new Date(timestamp) + ']: (v-localize) "' + message + '"';
+    }
+
+    /*
+     * Fetch logs, allows for filtering by type.
+     * @param {string} type - Log type to filter by.
+     * @returns {Array}
+     */
+
+  }, {
+    key: '$get',
+    value: function $get(type) {
+      return this.logs.filter(log(function () {
+        return type != null ? type : log.type === {
+          type: true
+        };
+      }));
+    }
+
+    /*
+     * Pushes provided message to log store.
+     * @param {string} message - Message to log.
+     */
+
+  }, {
+    key: 'log',
+    value: function log(message) {
+      var timestamp;
+      timestamp = this.time;
+      if (this.debugging) {
+        console.log(this._format(message, timestamp));
+      }
+      return this.logs.push({
+        type: 'log',
+        message: timestamp
+      });
+    }
+
+    /*
+     * Pushes provided message to log store.
+     * @param {string} message - Message to log.
+     */
+
+  }, {
+    key: 'warn',
+    value: function warn(message) {
+      var timestamp;
+      timestamp = this.time;
+      if (this.debugging) {
+        console.warn(this._format(message, timestamp));
+      }
+      return this.logs.push({
+        type: 'warning',
+        message: timestamp
+      });
+    }
+
+    /*
+     * Pushes provided message to log store.
+     * @param {string} message - Message to log.
+     */
+
+  }, {
+    key: 'error',
+    value: function error(message) {
+      var timestamp;
+      timestamp = this.time;
+      if (this.debugging) {
+        console.error(this._format(message, timestamp));
+      }
+      return this.logs.push({
+        type: 'critical',
+        message: timestamp
+      });
+    }
+  }]);
+
+  return Logger;
+}();
+
+module.exports = {
+  Logger: Logger
+};
+
+/***/ })
+/******/ ]);
+});
