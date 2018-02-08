@@ -1,5 +1,4 @@
 beforeEach(function(done) {
-  localStorage = mocks.storageMock()
   Vue.use(Localize)
   let localize = Localize.config(mocks.config)
   App = new Vue({
@@ -9,5 +8,5 @@ beforeEach(function(done) {
       lang: localize.default
     }
   })
-  window.setTimeout(done, 0)
+  setTimeout(done, 0)
 })
