@@ -9,7 +9,7 @@ module.exports =
       localize = vnode.context.$root.$options.localize
       # remove node from store
       localize.nodes.splice(localize.nodes.indexOf(
-        localize.nodes.find(e -> e.el == el)), 1)
+        localize.nodes.find((e) -> e.el == el)), 1)
 
     ###
      * @param {element} el - The element the directive is bound to.
@@ -18,7 +18,7 @@ module.exports =
     ###
     bind: (el, binding, vm) ->
       localize = vm.context.$root.$options.localize
-      if !localize.nodes.find(e -> e.el == el)
+      if !localize.nodes.find((e) -> e.el == el)
         # store localized node for updates
         localize.nodes.push
           el: el
@@ -27,10 +27,10 @@ module.exports =
       try
 
         # get localization tree
-        localizations = localize.localizations[opts.t || localize.locale]
-        branches = bindings.value.i.match(localize.$constants.regex.item)
+        localizations = localize.localizations[binding.value.t || localize.locale]
+        branches = binding.value.i.match(localize.$constants.regex.item)
         # not using forEach for hard escape
-        for i in branches
+        for i of branches
           branch = branches[i]
           localization = localizations[branch]
           if (localization == undefined)
@@ -41,7 +41,7 @@ module.exports =
           el.innerHTML = localization
           # find options for locale if exists
           options = localize.available.find(
-            loc -> loc.locale == localize.locale)
+            (loc) -> loc.locale == localize.locale)
           if options
             if options.orientation
               # change element display orientation

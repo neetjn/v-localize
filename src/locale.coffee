@@ -5,7 +5,7 @@ module.exports =
   ###
   locale: (opts = null) ->
     vue = @$root.$options._base
-    localize = @root.$options.localize
+    localize = @$root.$options.localize
     if opts
       if opts.l
         if localize.available.find((e) -> e.locale or e == opts.l)
@@ -27,7 +27,7 @@ module.exports =
         localizations = localize.localizations[opts.t || localize.locale]
         branches = opts.i.match(localize.$constants.regex.item)
         # not using forEach for hard escape
-        for i in branches
+        for i of branches
           branch = branches[i]
           localization = localizations[branch]
           if (localization == undefined)

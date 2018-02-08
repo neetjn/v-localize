@@ -13,8 +13,8 @@ module.exports =
     localize.$logger = new Logger(localize.debug)
     localize.nodes = []
     # integrity checks
-    available = localize.available.forEach (locale) ->
-      locale = locale.locale or locale
+    available = localize.available.map (locale) ->
+      locale.locale or locale
     # for locales with localize
     available.forEach (locale) ->
       if !localize.localizations[locale]
@@ -22,7 +22,7 @@ module.exports =
     localize.webStore = localize.webStore and typeof(window) != 'undefined'
     if localize.webStore
       webCached = window.localStorage.getItem('localization')
-      if webCached and available.find(locale => locale == webCached)
+      if webCached and available.find(locale -> locale == webCached)
         localize.locale = webCached
       else
         # default to default locale

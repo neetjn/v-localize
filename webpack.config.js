@@ -18,9 +18,9 @@ module.exports = {
     //     warnings: false
     //   }
     // }),
-    new webpack.LoaderOptionsPlugin({
-      minimize: true
-    })
+    // new webpack.LoaderOptionsPlugin({
+    //   minimize: true
+    // })
   ],
   module: {
     rules: [
@@ -30,6 +30,7 @@ module.exports = {
           {
             loader: 'coffee-loader',
             options: {
+              sourceMap: true,
               transpile: {
                 presets: ['env']
               }

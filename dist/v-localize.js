@@ -143,9 +143,9 @@ module.exports = {
       var localize;
       localize = vnode.context.$root.$options.localize;
       // remove node from store
-      return localize.nodes.splice(localize.nodes.indexOf(localize.nodes.find(e(function () {
+      return localize.nodes.splice(localize.nodes.indexOf(localize.nodes.find(function (e) {
         return e.el === el;
-      }))), 1);
+      })), 1);
     },
     /*
      * @param {element} el - The element the directive is bound to.
@@ -153,11 +153,11 @@ module.exports = {
      * @param {vnode} vnode - The virtual node produced by Vue’s compiler.
      */
     bind: function bind(el, binding, vm) {
-      var branch, branches, e, i, j, len, localization, localizations, localize, options;
+      var branch, branches, e, i, localization, localizations, localize, options;
       localize = vm.context.$root.$options.localize;
-      if (!localize.nodes.find(e(function () {
+      if (!localize.nodes.find(function (e) {
         return e.el === el;
-      }))) {
+      })) {
         // store localized node for updates
         localize.nodes.push({
           el: el,
@@ -167,11 +167,10 @@ module.exports = {
       }
       try {
         // get localization tree
-        localizations = localize.localizations[opts.t || localize.locale];
-        branches = bindings.value.i.match(localize.$constants.regex.item);
+        localizations = localize.localizations[binding.value.t || localize.locale];
+        branches = binding.value.i.match(localize.$constants.regex.item);
         // not using forEach for hard escape
-        for (j = 0, len = branches.length; j < len; j++) {
-          i = branches[j];
+        for (i in branches) {
           branch = branches[i];
           localization = localizations[branch];
           if (localization === void 0) {
@@ -183,9 +182,9 @@ module.exports = {
         } else {
           el.innerHTML = localization;
           // find options for locale if exists
-          options = localize.available.find(loc(function () {
+          options = localize.available.find(function (loc) {
             return loc.locale === localize.locale;
-          }));
+          });
           if (options) {
             if (options.orientation) {
               // change element display orientation
@@ -234,9 +233,9 @@ module.exports = {
   locale: function locale() {
     var opts = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
 
-    var branch, branches, i, j, len, localization, localizations, localize, vue;
+    var branch, branches, i, localization, localizations, localize, vue;
     vue = this.$root.$options._base;
-    localize = this.root.$options.localize;
+    localize = this.$root.$options.localize;
     if (opts) {
       if (opts.l) {
         if (localize.available.find(function (e) {
@@ -263,8 +262,7 @@ module.exports = {
         localizations = localize.localizations[opts.t || localize.locale];
         branches = opts.i.match(localize.$constants.regex.item);
         // not using forEach for hard escape
-        for (j = 0, len = branches.length; j < len; j++) {
-          i = branches[j];
+        for (i in branches) {
           branch = branches[i];
           localization = localizations[branch];
           if (localization === void 0) {
@@ -310,8 +308,8 @@ module.exports = {
     localize.$logger = new Logger(localize.debug);
     localize.nodes = [];
     // integrity checks
-    available = localize.available.forEach(function (locale) {
-      return locale = locale.locale || locale;
+    available = localize.available.map(function (locale) {
+      return locale.locale || locale;
     });
     // for locales with localize
     available.forEach(function (locale) {
@@ -360,10 +358,12 @@ version = _require.version;
 
 
 module.exports = {
-  version: version,
-  regex: {
-    // regex for searching for locale
-    item: /([a-zA-Z$]{1,}).*?/g
+  constants: {
+    version: version,
+    regex: {
+      // regex for searching for locale
+      item: /([a-zA-Z$]{1,}).*?/g
+    }
   }
 };
 
@@ -380,103 +380,118 @@ module.exports = {"name":"v-localize","version":"1.1.7","description":"Simple lo
 "use strict";
 
 
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var Logger;
 
 Logger = function () {
-  var Logger = function Logger() {
-    _classCallCheck(this, Logger);
-  };
-
-  ;
-
   /*
    * Logging interface for v-localize
    * @param {bool} debugging - Debug to console.
    */
-  constructor(function (debugging) {
+  function Logger(debugging) {
+    _classCallCheck(this, Logger);
+
     this.debugging = debugging;
     this.logs = [];
-    return Object.defineProperty(this, 'time', {
+    Object.defineProperty(this, 'time', {
       get: function get() {
         return new Date().getTime();
       }
     });
-  });
+  }
 
   /*
    * Format log for logstore
    * @param {string} message - message to log.
    * @param {int} timestamp - timestamp for log.
    */
-  _format(function (message, timestamp) {
-    return '[' + new Date(timestamp) + ']: (v-localize) "' + message + '"';
-  });
 
-  /*
-   * Fetch logs, allows for filtering by type.
-   * @param {string} type - Log type to filter by.
-   * @returns {Array}
-   */
-  $get(function (type) {
-    return this.logs.filter(log(function () {
-      return type != null ? type : log.type === {
-        type: true
-      };
-    }));
-  });
 
-  /*
-   * Pushes provided message to log store.
-   * @param {string} message - Message to log.
-   */
-  log(function (message) {
-    var timestamp;
-    timestamp = this.time;
-    if (this.debugging) {
-      console.log(this._format(message, timestamp));
+  _createClass(Logger, [{
+    key: '_format',
+    value: function _format(message, timestamp) {
+      return '[' + new Date(timestamp) + ']: (v-localize) "' + message + '"';
     }
-    return this.logs.push({
-      type: 'log',
-      message: timestamp
-    });
-  });
 
-  /*
-   * Pushes provided message to log store.
-   * @param {string} message - Message to log.
-   */
-  warn(function (message) {
-    var timestamp;
-    timestamp = this.time;
-    if (this.debugging) {
-      console.warn(this._format(message, timestamp));
-    }
-    return this.logs.push({
-      type: 'warning',
-      message: timestamp
-    });
-  });
+    /*
+     * Fetch logs, allows for filtering by type.
+     * @param {string} type - Log type to filter by.
+     * @returns {Array}
+     */
 
-  /*
-   * Pushes provided message to log store.
-   * @param {string} message - Message to log.
-   */
-  error(function (message) {
-    var timestamp;
-    timestamp = this.time;
-    if (this.debugging) {
-      console.error(this._format(message, timestamp));
+  }, {
+    key: '$get',
+    value: function $get(type) {
+      return this.logs.filter(log(function () {
+        return type != null ? type : log.type === {
+          type: true
+        };
+      }));
     }
-    return this.logs.push({
-      type: 'critical',
-      message: timestamp
-    });
-  });
+
+    /*
+     * Pushes provided message to log store.
+     * @param {string} message - Message to log.
+     */
+
+  }, {
+    key: 'log',
+    value: function log(message) {
+      var timestamp;
+      timestamp = this.time;
+      if (this.debugging) {
+        console.log(this._format(message, timestamp));
+      }
+      return this.logs.push({
+        type: 'log',
+        message: timestamp
+      });
+    }
+
+    /*
+     * Pushes provided message to log store.
+     * @param {string} message - Message to log.
+     */
+
+  }, {
+    key: 'warn',
+    value: function warn(message) {
+      var timestamp;
+      timestamp = this.time;
+      if (this.debugging) {
+        console.warn(this._format(message, timestamp));
+      }
+      return this.logs.push({
+        type: 'warning',
+        message: timestamp
+      });
+    }
+
+    /*
+     * Pushes provided message to log store.
+     * @param {string} message - Message to log.
+     */
+
+  }, {
+    key: 'error',
+    value: function error(message) {
+      var timestamp;
+      timestamp = this.time;
+      if (this.debugging) {
+        console.error(this._format(message, timestamp));
+      }
+      return this.logs.push({
+        type: 'critical',
+        message: timestamp
+      });
+    }
+  }]);
 
   return Logger;
-}.call(undefined);
+}();
 
 module.exports = {
   Logger: Logger

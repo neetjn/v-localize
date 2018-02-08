@@ -4,7 +4,7 @@ class Logger
    * Logging interface for v-localize
    * @param {bool} debugging - Debug to console.
   ###
-  constructor (@debugging) ->
+  constructor: (@debugging) ->
     @logs = []
     Object.defineProperty this, 'time', get: ->
       (new Date).getTime()
@@ -14,7 +14,7 @@ class Logger
    * @param {string} message - message to log.
    * @param {int} timestamp - timestamp for log.
   ###
-  _format (message, timestamp) ->
+  _format: (message, timestamp) ->
     return "[#{new Date(timestamp)}]: (v-localize) \"#{message}\""
 
   ###
@@ -22,14 +22,14 @@ class Logger
    * @param {string} type - Log type to filter by.
    * @returns {Array}
   ###
-  $get (type) ->
+  $get: (type) ->
     this.logs.filter log -> type ? log.type == type : true
 
   ###
    * Pushes provided message to log store.
    * @param {string} message - Message to log.
   ###
-  log (message) ->
+  log: (message) ->
     timestamp = @time
     if @debugging
       console.log @_format(message, timestamp)
@@ -41,7 +41,7 @@ class Logger
    * Pushes provided message to log store.
    * @param {string} message - Message to log.
   ###
-  warn (message) ->
+  warn: (message) ->
     timestamp = @time
     if @debugging
       console.warn @_format(message, timestamp)
@@ -53,7 +53,7 @@ class Logger
    * Pushes provided message to log store.
    * @param {string} message - Message to log.
   ###
-  error (message) ->
+  error: (message) ->
     timestamp = @time
     if @debugging
       console.error @_format(message, timestamp)
