@@ -12,7 +12,7 @@ module.exports =
           localize.locale = opts.l # update our locale
           if localize.webStore
             # update session localization
-            window.localStorage.setItem('localization', opts.l)
+            window.localStorage.setItem('locale', opts.l)
           localize.nodes.forEach (e) ->
             # update all directive bindings
             vue.directive('localize').bind(e.el, e.binding, e.vm)

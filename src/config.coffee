@@ -21,14 +21,14 @@ module.exports =
         throw Error("Localizations for locale \"#{ locale }\" not found.")
     localize.webStore = localize.webStore and typeof(window) != 'undefined'
     if localize.webStore
-      webCached = window.localStorage.getItem('localization')
-      if webCached and available.find(locale -> locale == webCached)
+      webCached = window.localStorage.getItem('locale')
+      if webCached and available.find((locale) -> locale == webCached)
         localize.locale = webCached
       else
         # default to default locale
         localize.locale = localize.default
         # commit localization to local storage
-        window.localStorage.setItem('localization', localize.locale)
+        window.localStorage.setItem('locale', localize.locale)
     else
       # default to default locale
       localize.locale = localize.default
