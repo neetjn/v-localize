@@ -18,7 +18,7 @@
 |--------|------|---------|----------|--------|
 | 4.0+ ✔ |  ✔   | 3.5+ ✔  | 10.50+ ✔ | 4.0+ ✔ |
 
-**V-Localize** was developed using Vue.js 2.x, support previous versions is not available.
+**V-Localize** was developed using Vue.js 2.x, support for previous versions is not available.
 
 ### Usage
 
