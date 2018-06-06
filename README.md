@@ -132,6 +132,8 @@ The plugin takes 5 options,
   }]
   ```
 
+> **`defaultFallback`**: Use the existing node's text content if enabled and requested localization is not found. 
+
 > **`fallback`**: Default text to show if localization for current language not found. If not specified, will default to `'N/A'`.
 
 > **`webStore`**: If the Vue instance is accessed within a web context and option `webStore` is enabled, plugin will store the locale in local storage for the next visit.
