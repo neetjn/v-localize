@@ -61,9 +61,10 @@ module.exports =
         # coffeelint: disable=max_line_length
         localize.$logger.warn(
           "Could not find localization for \"#{ binding.value.i }\" in #{binding.value.t || localize.locale}")
-        # coffeelint: enable=max_line_length
         localize.$logger.error(e)
+        fallback = if localize.fallbackContent then (binding.textContent or binding.innerHTML) else localize.fallback
+        # coffeelint: enable=max_line_length
         if binding.value.attr
-          el.setAttribute(binding.value.attr, localize.fallback)
+          el.setAttribute(binding.value.attr, fallback)
         else
-          el.innerHTML = localize.fallback
+          el.innerHTML = fallback
