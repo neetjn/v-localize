@@ -132,7 +132,7 @@ The plugin takes 5 options,
   }]
   ```
 
-> **`defaultFallback`**: Use the existing node's text content if enabled and requested localization is not found. 
+> **`fallbackContent`**: Use the existing node's text content if enabled and requested localization is not found. 
 
 > **`fallback`**: Default text to show if localization for current language not found. If not specified, will default to `'N/A'`.
 
