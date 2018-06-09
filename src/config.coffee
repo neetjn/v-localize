@@ -35,5 +35,6 @@ module.exports =
     if typeof(document) != 'undefined'
       # change document lang
       document.querySelector('html').setAttribute('lang', localize.locale)
+    localize.defaultFallback = localize.defaultFallback or false
     localize.fallback = localize.fallback or 'N/A'
     return localize
