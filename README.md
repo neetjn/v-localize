@@ -175,4 +175,4 @@ Contributing guidelines are as follows,
 * Include your name and email in the contributors list.
 
 ---
-Copyright (c) 2017 John Nolette Licensed under the MIT license.
+Copyright (c) 2018 John Nolette Licensed under the MIT license.
