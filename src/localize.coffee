@@ -1,3 +1,7 @@
+###
+* v-localize directive
+* vue.js reference: https://vuejs.org/v2/api/#Vue-directive
+###
 module.exports =
   directive:
     ###
@@ -25,7 +29,6 @@ module.exports =
           binding: binding
           vm: vm
       try
-
         # get localization tree
         # coffeelint: disable=max_line_length
         localization = localize.localizations[binding.value.t || localize.locale]
@@ -55,9 +58,7 @@ module.exports =
               if options.font.size
                 # https://www.w3schools.com/jsref/prop_style_fontsize.asp
                 el.style.fontSize = options.font.size
-
       catch e
-
         # coffeelint: disable=max_line_length
         localize.$logger.warn(
           "Could not find localization for \"#{ binding.value.i }\" in #{binding.value.t || localize.locale}")
