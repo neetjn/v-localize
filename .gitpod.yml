@@ -1,0 +1,5 @@
+image: "gitpod/workspace-full"
+tasks:
+  - command: "npm install"
+ports:
+  - port: 8000

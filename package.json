@@ -33,10 +33,10 @@
   "homepage": "https://neetjn.github.io/v-localize/",
   "devDependencies": {
     "babel": "^6.23.0",
-    "babel-core": "^6.26.0",
+    "babel-core": "^6.26.3",
     "babel-eslint": "^8.2.1",
     "babel-loader": "^7.1.2",
-    "babel-preset-env": "^1.6.1",
+    "babel-preset-env": "^1.7.0",
     "coffee-loader": "^0.9.0",
     "coffeelint": "^2.0.7",
     "coffeescript": "^2.2.0",
