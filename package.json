@@ -33,6 +33,7 @@
   "homepage": "https://neetjn.github.io/v-localize/",
   "dependencies": {},
   "devDependencies": {
+    "@vue/test-utils": "^1.0.0-beta.29",
     "coffee-loader": "^0.9.0",
     "coffeelint": "^2.1.0",
     "coffeescript": "^2.4.1",
@@ -42,7 +43,6 @@
     "jest-dom": "^3.1.3",
     "vue": "^2.6.10",
     "vue-template-compiler": "^2.6.10",
-    "vue-test-utils": "^1.0.0-beta.11",
     "webpack": "^4.29.6",
     "webpack-cli": "^3.3.0"
   },

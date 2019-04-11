@@ -10,7 +10,8 @@
     "console": true,
     "describe": true,
     "beforeEach": true,
-    "it": true
+    "it": true,
+    "expect": true
   },
   "rules": {
     "object-curly-spacing": ["error", "always"],

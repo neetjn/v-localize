@@ -3,7 +3,9 @@
 
 module.exports =
   install: (Vue, options) ->
+    # define localize directive
     Vue.directive('localize', directive)
-    Vue.mixin # define global mixin
+    # define global mixin
+    Vue.mixin
       methods:
         $locale: locale

@@ -1,10 +1,10 @@
 require('jest-dom/extend-expect')
-const { mount, createLocalVue } = require('vue-test-utils')
+const { mount, createLocalVue } = require('@vue/test-utils')
 const Localize = require('../dist/v-localize')
 const MockConfig = require('./mock.config')
 
 describe('Plugin', () => {
-  const context = {}
+  const ctx = {}
 
   beforeEach(() => {
     document.body.innerHTML = `
@@ -17,22 +17,16 @@ describe('Plugin', () => {
       </div>
       `
     }
-    const Vue = createLocalVue()
-    Vue.use(Localize)
+    const localVue = createLocalVue()
+    localVue.use(Localize)
     const localize = Localize.config(MockConfig)
-    const App = mount(RootComponent, { Vue, localize })
+    const App = mount(RootComponent, { localVue, localize })
 
-    context.App = App
+    ctx.App = App
   })
 
   it('should install plugin as expected', function() {
-    // const tag = document.querySelector('root')
-    // console.log(tag)
-    // console.log(document.body.innerHTML)
-    // const field = document.querySelector('input[type="password"]')
-    // expect(field._tag).toBeDefined()
-    // console.log(context.App.find('h1'))
-    // left here, figure out why mixin method is not being propagated
-    console.log(context.App.vm)
+    const vm = ctx.App.vm
+    expect(vm.$locale).toBeDefined()
   })
 })
