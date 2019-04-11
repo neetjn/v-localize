@@ -1,0 +1,30 @@
+{
+  "root": true,
+  "parserOptions": {
+    "ecmaVersion": 6
+  },
+  "globals": {
+    "require": true,
+    "module": true,
+    "document": true,
+    "console": true,
+    "describe": true,
+    "beforeEach": true,
+    "it": true
+  },
+  "rules": {
+    "object-curly-spacing": ["error", "always"],
+    "no-multiple-empty-lines": ["error", { "max": 2, "maxBOF": 1 }],
+    "semi": ["error", "never"],
+    "no-unused-vars": ["error"],
+    "no-undef": ["error"],
+    "space-before-blocks": ["error", "always"],
+    "quotes": ["error", "single"],
+    "prefer-const": ["error", {
+      "destructuring": "any",
+      "ignoreReadBeforeAssign": false
+    }],
+    "prefer-template": "error",
+    "no-useless-concat": "error"
+  }
+}
