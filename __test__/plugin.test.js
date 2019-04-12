@@ -3,6 +3,8 @@ const { mount, createLocalVue } = require('@vue/test-utils')
 const Localize = require('../dist/v-localize')
 const MockConfig = require('./mock.config')
 
+// TODO: add tests for logger
+
 describe('Plugin', () => {
   const ctx = {}
   const generalWaitDelay = 500
