@@ -7,26 +7,32 @@ describe('Plugin', () => {
   const ctx = {}
   const generalWaitDelay = 500
 
+  const RootComponent = {
+    template: `
+    <div id="root">
+      <div id="content">
+        <h1 v-localize="{i: 'header.title'}"></h1>
+        <h2 v-localize="{i: 'header.title', t: 'es-SP', attr: 'title'}"></h2>
+      </div>
+      <div id="languages">
+        <button id="en-locale" v-on:click="changeLocale('en-US')">English</button>
+        <button id="sp-locale" v-on:click="changeLocale('es-SP')">Spanish</button>
+        <button id="pr-locale" v-on:click="changeLocale('pr-BR')">Portuguese</button>
+        <button id="ar-locale" v-on:click="changeLocale('ar-MS')">Arabic</button>
+      </div>
+    </div>
+    `,
+    methods: {
+      changeLocale: function(l) {
+        this.$locale({ l })
+      }
+    }
+  }
+
   beforeEach(() => {
     document.body.innerHTML = `
       <root />
     `
-    const RootComponent = {
-      template: `
-      <div id="root">
-        <div id="content">
-          <h1 v-localize="{i: 'header.title'}"></h1>
-          <h2 v-localize="{i: 'header.title', t: 'es-SP', attr: 'title'}"></h2>
-        </div>
-        <div id="languages">
-          <button id="en-locale" @click="$locale('en-US')">English</button>
-          <button id="sp-locale" @click="$locale('es-SP')">Spanish</button>
-          <button id="pr-locale" @click="$locale('pr-BR')">Portuguese</button>
-          <button id="ar-locale" @click="$locale('ar-MS')">Arabic</button>
-        </div>
-      </div>
-      `
-    }
     const localVue = createLocalVue()
     localVue.use(Localize)
     const localize = Localize.config(MockConfig)
@@ -58,7 +64,6 @@ describe('Plugin', () => {
     setTimeout(() => {
       App.find('button#pr-locale').trigger('click')
       setTimeout(() => {
-        // left here, figure out why english locale is being returned
         expect(App.find('h1').text()).toEqual(MockConfig.localizations['pr-BR'].header.title)
         expect(App.find('h2').attributes().title).toEqual(MockConfig.localizations['es-SP'].header.title)
         done()
@@ -66,6 +71,19 @@ describe('Plugin', () => {
     }, generalWaitDelay)
   })
 
-  // TODO: add test for font weight and font family
-  // TODO: add test for text direction
+  it('should appropriately modify dom element font/text based on locale options', (done) => {
+    const App = ctx.App
+    setTimeout(() => {
+      App.find('button#ar-locale').trigger('click')
+      setTimeout(() => {
+        const h1 = App.find('h1')
+        expect(h1.text()).toEqual(MockConfig.localizations['ar-MS'].header.title)
+        const arLocale = MockConfig.available.find(l => l.locale == 'ar-MS')
+        expect(h1.element.style.fontFamily).toEqual(arLocale.font.family)
+        expect(h1.element.style.fontSize).toEqual(arLocale.font.size)
+        expect(h1.attributes().dir).toEqual(arLocale.orientation)
+        done()
+      }, generalWaitDelay)
+    }, generalWaitDelay)
+  })
 })

@@ -5,7 +5,8 @@ module.exports = {
     locale: 'ar-MS',
     orientation: 'rtl',
     font: {
-      size: 'smaller'
+      size: 'smaller',
+      family: 'test'
     }
   }],
   fallback: '?',
