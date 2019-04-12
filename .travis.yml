@@ -2,17 +2,16 @@ dist: trusty
 language: node_js
 node_js:
   - '10'
+before_install:
+  - npm install -g codecov
 install:
   - npm install
 cache:
   directories:
     - node_modules
-before_script:
-  - export DISPLAY=:99.0
-  - sh -e /etc/init.d/xvfb start
-  - sleep 3
 script:
   - npm run build
+  - if [ "$TRAVIS_BRANCH" == "master" ]; then codecov; fi
 deploy:
   provider: npm
   email: john@neetgroup.net
