@@ -8,8 +8,8 @@
   },
   "scripts": {
     "bundle": "node_modules/.bin/webpack --config webpack.config.js",
-    "lint": "node_modules/.bin/coffeelint -f coffee-lint.json src/**.coffee",
-    "test": "node_modules/.bin/karma start test/karma.conf.js",
+    "lint": "node_modules/.bin/coffeelint -f coffee-lint.json src/**.coffee && node_modules/.bin/eslint __test__/**.js",
+    "test": "node_modules/.bin/jest --coverage",
     "build": "npm run lint && npm run bundle && npm run test"
   },
   "repository": {
@@ -31,23 +31,24 @@
     "url": "https://github.com/neetjn/v-localize/issues"
   },
   "homepage": "https://neetjn.github.io/v-localize/",
+  "dependencies": {},
   "devDependencies": {
-    "babel": "^6.23.0",
-    "babel-core": "^6.26.3",
-    "babel-eslint": "^8.2.1",
-    "babel-loader": "^7.1.2",
-    "babel-preset-env": "^1.7.0",
+    "@vue/test-utils": "^1.0.0-beta.29",
     "coffee-loader": "^0.9.0",
-    "coffeelint": "^2.0.7",
-    "coffeescript": "^2.2.0",
-    "electron": "^1.8.2",
+    "coffeelint": "^2.1.0",
+    "coffeescript": "^2.4.1",
+    "eslint": "^5.16.0",
     "hoek": "^5.0.3",
-    "jasmine": "2.5.2",
-    "karma": "^1.7.1",
-    "karma-electron": "^5.2.1",
-    "karma-jasmine": "^1.1.0",
-    "vue": "^2.5.0",
-    "webpack": "^3.8.1"
+    "jest": "^24.7.1",
+    "jest-dom": "^3.1.3",
+    "vue": "^2.6.10",
+    "vue-template-compiler": "^2.6.10",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.3.0"
   },
-  "dependencies": {}
+  "jest": {
+    "coverageDirectory": "./coverage/",
+    "collectCoverage": true,
+    "verbose": true
+  }
 }

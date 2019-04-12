@@ -10,7 +10,9 @@ module.exports =
      * @param {vnode} vnode - The virtual node produced by Vue’s compiler.
     ###
     unbind: (el, binding, vnode) ->
-      localize = vnode.context.$root.$options.localize
+      # get localize options from root context or current context
+      localize = vm.context.$root.$options.localize \
+        or vm.context.$options.localize
       # remove node from store
       localize.nodes.splice(localize.nodes.indexOf(
         localize.nodes.find((e) -> e.el == el)), 1)
@@ -21,7 +23,9 @@ module.exports =
      * @param {vnode} vnode - The virtual node produced by Vue’s compiler.
     ###
     bind: (el, binding, vm) ->
-      localize = vm.context.$root.$options.localize
+      # get localize options from root context or current context
+      localize = vm.context.$root.$options.localize \
+        or vm.context.$options.localize
       if !localize.nodes.find((e) -> e.el == el)
         # store localized node for updates
         localize.nodes.push

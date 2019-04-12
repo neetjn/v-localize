@@ -5,7 +5,8 @@ module.exports =
   ###
   locale: (opts = null) ->
     vue = @$root.$options._base
-    localize = @$root.$options.localize
+    # get localize options from root context or current context
+    localize = @$root.$options.localize or @$options.localize
     if opts
       if opts.l
         if localize.available.find((e) -> e.locale or e == opts.l)

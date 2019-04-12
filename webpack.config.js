@@ -1,5 +1,4 @@
 const path = require('path')
-const webpack = require('webpack')
 
 module.exports = {
   entry: './src/index.coffee',
@@ -11,17 +10,6 @@ module.exports = {
     library: 'Localize',
     umdNamedDefine: true
   },
-  plugins: [
-    new webpack.optimize.UglifyJsPlugin({
-      sourceMap: true,
-      compress: {
-        warnings: false
-      }
-    }),
-    new webpack.LoaderOptionsPlugin({
-      minimize: true
-    })
-  ],
   module: {
     rules: [
       {
@@ -31,9 +19,6 @@ module.exports = {
             loader: 'coffee-loader',
             options: {
               sourceMap: true,
-              transpile: {
-                presets: ['env']
-              }
             }
           }
         ]
