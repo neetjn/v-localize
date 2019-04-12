@@ -8,6 +8,8 @@
     "module": true,
     "document": true,
     "console": true,
+    "setTimeout": true,
+    "setInterval": true,
     "describe": true,
     "beforeEach": true,
     "it": true,
