@@ -1,3 +1,7 @@
+###
+* v-localize directive
+* vue.js reference: https://vuejs.org/v2/api/#Vue-directive
+###
 module.exports =
   directive:
     ###
@@ -6,7 +10,9 @@ module.exports =
      * @param {vnode} vnode - The virtual node produced by Vue’s compiler.
     ###
     unbind: (el, binding, vnode) ->
-      localize = vnode.context.$root.$options.localize
+      # get localize options from root context or current context
+      localize = vm.context.$root.$options.localize \
+        or vm.context.$options.localize
       # remove node from store
       localize.nodes.splice(localize.nodes.indexOf(
         localize.nodes.find((e) -> e.el == el)), 1)
@@ -17,7 +23,9 @@ module.exports =
      * @param {vnode} vnode - The virtual node produced by Vue’s compiler.
     ###
     bind: (el, binding, vm) ->
-      localize = vm.context.$root.$options.localize
+      # get localize options from root context or current context
+      localize = vm.context.$root.$options.localize \
+        or vm.context.$options.localize
       if !localize.nodes.find((e) -> e.el == el)
         # store localized node for updates
         localize.nodes.push
@@ -25,7 +33,6 @@ module.exports =
           binding: binding
           vm: vm
       try
-
         # get localization tree
         # coffeelint: disable=max_line_length
         localization = localize.localizations[binding.value.t || localize.locale]
@@ -55,14 +62,12 @@ module.exports =
               if options.font.size
                 # https://www.w3schools.com/jsref/prop_style_fontsize.asp
                 el.style.fontSize = options.font.size
-
       catch e
-
         # coffeelint: disable=max_line_length
         localize.$logger.warn(
           "Could not find localization for \"#{ binding.value.i }\" in #{binding.value.t || localize.locale}")
         localize.$logger.error(e)
-        fallback = if localize.fallbackContent then (binding.textContent or binding.innerHTML) else localize.fallback
+        fallback = if localize.fallbackContent then (el.textContent or el.innerHTML) else localize.fallback
         # coffeelint: enable=max_line_length
         if binding.value.attr
           el.setAttribute(binding.value.attr, fallback)
