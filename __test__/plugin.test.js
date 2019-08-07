@@ -15,18 +15,28 @@ describe('Plugin', () => {
       <div id="content">
         <h1 v-localize="{i: 'header.title'}"></h1>
         <h2 v-localize="{i: 'header.title', t: 'es-SP', attr: 'title'}"></h2>
+        <h3 v-if="isVisible" v-localize="{i: 'header.title'}"></h3>
       </div>
       <div id="languages">
         <button id="en-locale" v-on:click="changeLocale('en-US')">English</button>
         <button id="sp-locale" v-on:click="changeLocale('es-SP')">Spanish</button>
         <button id="pr-locale" v-on:click="changeLocale('pr-BR')">Portuguese</button>
         <button id="ar-locale" v-on:click="changeLocale('ar-MS')">Arabic</button>
+        <button id="toggleVisible" v-on:click="changeVisible()">Toggle</button>
       </div>
     </div>
     `,
     methods: {
-      changeLocale: function(l) {
+      changeLocale(l) {
         this.$locale({ l })
+      },
+      changeVisible() {
+        this.isVisible = !this.isVisible
+      }
+    },
+    data: function() {
+      return {
+        isVisible: true
       }
     }
   }
@@ -84,6 +94,19 @@ describe('Plugin', () => {
         expect(h1.element.style.fontFamily).toEqual(arLocale.font.family)
         expect(h1.element.style.fontSize).toEqual(arLocale.font.size)
         expect(h1.attributes().dir).toEqual(arLocale.orientation)
+        done()
+      }, generalWaitDelay)
+    }, generalWaitDelay)
+  })
+
+  it('should handle unbinding from conditionals as expected', (done) => {
+    // # https://github.com/neetjn/v-localize/issues/37
+    const App = ctx.App
+    setTimeout(() => {
+      expect(App.find('h3').text()).toEqual(MockConfig.localizations['en-US'].header.title)
+      App.find('#toggleVisible').trigger('click')
+      setTimeout(() => {
+        expect(App.find('h3').exists()).toBe(false)
         done()
       }, generalWaitDelay)
     }, generalWaitDelay)

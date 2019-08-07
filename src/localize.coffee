@@ -7,9 +7,9 @@ module.exports =
     ###
      * @param {element} el - The element the directive is bound to.
      * @param {object} binding - Vue binding properties.
-     * @param {vnode} vnode - The virtual node produced by Vue’s compiler.
+     * @param {vnode} vm - The virtual node produced by Vue’s compiler.
     ###
-    unbind: (el, binding, vnode) ->
+    unbind: (el, binding, vm) ->
       # get localize options from root context or current context
       localize = vm.context.$root.$options.localize \
         or vm.context.$options.localize
@@ -20,7 +20,7 @@ module.exports =
     ###
      * @param {element} el - The element the directive is bound to.
      * @param {object} binding - Vue binding properties.
-     * @param {vnode} vnode - The virtual node produced by Vue’s compiler.
+     * @param {vnode} vm - The virtual node produced by Vue’s compiler.
     ###
     bind: (el, binding, vm) ->
       # get localize options from root context or current context
