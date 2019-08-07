@@ -88,4 +88,9 @@ describe('Plugin', () => {
       }, generalWaitDelay)
     }, generalWaitDelay)
   })
+
+  it('should handle unbinding from conditionals as expected', (done) => {
+    // # https://github.com/neetjn/v-localize/issues/37
+
+  })
 })
